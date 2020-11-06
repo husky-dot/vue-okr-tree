@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "github-markdown-css": "^4.0.0",
+    "prismjs": "^1.22.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {

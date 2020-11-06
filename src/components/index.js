@@ -1,0 +1,6 @@
+export { default as Base01} from './Base01.vue'
+export { default as Base02} from './Base02.vue'
+export { default as Base03} from './Base03.vue'
+export { default as Base04} from './Base04.vue'
+export { default as Base05} from './Base05.vue'
+export { default as Base06} from './Base06.vue'
