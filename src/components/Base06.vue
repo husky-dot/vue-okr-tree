@@ -66,6 +66,7 @@ export default {
   direction="horizontal" 
   show-collapsable 
   default-expand-all
+  :render-content="renderContent"
   /> \n
 <script>
   export default {
@@ -104,14 +105,24 @@ export default {
           }]
         }]
       }
-    }
+    },
+    methods: {
+      renderContent (h, node) {
+        console.log(node)
+        return (
+          <div class=['diy-wrapper', node.isCurrent ? 'current-select' : ''] >
+            <div class="diy-con-name">{node.data.label}</div>
+            <div class="diy-con-content">{node.data.content}</div>
+          </div>
+        )
+      }
+    },
   }
 <\/script>`
     }
   },
   methods: {
     renderContent (h, node) {
-      console.log(node)
       return (
         <div class={`diy-wrapper ${node.isCurrent ? 'current-select' : ''}` }>
           <div class="diy-con-name">{node.data.label}</div>

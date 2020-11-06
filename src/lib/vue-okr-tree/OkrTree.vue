@@ -471,7 +471,7 @@ export default {
 
 /*从父节点添加向下的连接器了*/
 .horizontal .org-chart-node-children::before,
-.horizontal .org-chart-node-left-children::after{
+.horizontal .org-chart-node-left-children::before{
   content: '';
   position: absolute;
   left:0;
@@ -480,8 +480,11 @@ export default {
   width: 20px;
   height: 0;
 }
-.horizontal .org-chart-node-left-children::after{
+.horizontal .org-chart-node-left-children::before{
   left: 90%;
+}
+.horizontal > .only-both-tree-node > .org-chart-node-left-children::before{
+  display: none;
 }
 
 .horizontal .org-chart-node-label{
