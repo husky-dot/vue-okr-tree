@@ -477,11 +477,11 @@ export default {
   left:0;
   top: 50%;
   border-top: 1px solid #ccc;
-  width: 20px;
-  height: 0;
+  width: 12px;
+  height: 10px;
 }
 .horizontal .org-chart-node-left-children::before{
-  left: 90%;
+  left: calc(100% - 11px);
 }
 .horizontal > .only-both-tree-node > .org-chart-node-left-children::before{
   display: none;

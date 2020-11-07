@@ -78,6 +78,7 @@ Vue.use(Vue2OrgTree)
   ------------------|-----------------------------------------|:----------------------
   node-click             |  节点被点击时的回调  | 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身。
   node-expand         |  节点被展开时触发的事件  | 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身
+  node-collapse        |  节点被关闭时触发的事件  | 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身
 node-contextmenu         |  当某一节点被鼠标右键点击时会触发该事件                      | 共四个参数，依次为：event、传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身。
  getNode            |  根据 data 或者 key 拿到 Tree 组件中的 node  | (data) 要获得 node 的 key 或者 data
  setCurrentNode            |  通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (node) 待被选节点的 node

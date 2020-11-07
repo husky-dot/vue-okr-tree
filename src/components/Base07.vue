@@ -177,7 +177,7 @@ export default {
   }
 <\/script>`
     }
-  }
+  },
 }
 </script>
 

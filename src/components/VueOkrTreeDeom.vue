@@ -18,10 +18,12 @@
     <Base06 />
     <!-- OKR 模式 -->
     <Base07 />
+    <!-- OKR 模式之自定义内容 -->
+    <Base08 />
   </div>
 </template>
 <script>
-import { Base01, Base02, Base03, Base04, Base041, Base05, Base06, Base07} from './index.js'
+import { Base01, Base02, Base03, Base04, Base041, Base05, Base06, Base07, Base08} from './index.js'
 export default {
   components: {
     Base01,
@@ -31,7 +33,8 @@ export default {
     Base041,
     Base05,
     Base06,
-    Base07
+    Base07,
+    Base08
   },
   data () {
     return {
