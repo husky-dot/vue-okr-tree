@@ -20,10 +20,21 @@
     <Base07 />
     <!-- OKR 模式之自定义内容 -->
     <Base08 />
+    <!-- Attributes-->
+    <Attributes />
+    <!-- Props-->
+    <Props />
+    <!-- Events-->
+    <Events />
+
+    <div class="top-wrapp" @click="goTop">
+      <img :src="require('@/assets/top.png')" alt="">
+    </div>
   </div>
 </template>
 <script>
-import { Base01, Base02, Base03, Base04, Base041, Base05, Base06, Base07, Base08} from './index.js'
+import { Base01, Base02, Base03, Base04, Base041, Base05,
+  Base06, Base07, Base08, Attributes, Props, Events} from './index.js'
 export default {
   components: {
     Base01,
@@ -34,12 +45,19 @@ export default {
     Base05,
     Base06,
     Base07,
-    Base08
+    Base08,
+    Attributes, 
+    Props,
+    Events
   },
   data () {
     return {
     }
-    
+  },
+  methods: {
+    goTop () {
+      document.body.scrollTop = document.documentElement.scrollTop = 0
+    }
   }
 }
 </script>
@@ -67,5 +85,37 @@ export default {
 .vue-ork-tree-demo /deep/ .component-wrapper{
   overflow: auto;
   padding-left: 40px;
+}
+.vue-ork-tree-demo /deep/ table{
+  width: 100%;
+  font-size: 14px;
+}
+.vue-ork-tree-demo /deep/ table th{
+  white-space: nowrap;
+  color: #909399;
+  font-weight: 400;
+  border-bottom: 1px solid #dcdfe6;
+  padding: 15px;
+  max-width: 250px;
+  text-align: left;
+}
+.vue-ork-tree-demo /deep/ table td{
+  border-bottom: 1px solid #dcdfe6;
+  padding: 15px;
+  max-width: 250px;
+  text-align: left;
+}
+.vue-ork-tree-demo /deep/  table td:first-child, 
+.vue-ork-tree-demo /deep/  table th:first-child{
+  padding-left: 10px;
+}
+.top-wrapp{
+  position: fixed;
+  bottom: 20px;
+  right: 15%;
+  cursor: pointer;
+}
+.top-wrapp img{
+  width: 60px;
 }
 </style>

@@ -2,11 +2,13 @@
   "name": "vue-okr-tree",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/vue-okr-tree.umd.min.js",
   "scripts": {
     "dev": "vue-cli-service serve --open",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
     "build:dev": "vue-cli-service build --mode development",
+    "build:lib": "vue-cli-service build --target lib  --name vue-okr-tree src/lib/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
