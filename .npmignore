@@ -1,0 +1,4 @@
+.browserslistrc
+/public/
+/src/
+.eslintrc.js

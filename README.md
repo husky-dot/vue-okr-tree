@@ -7,28 +7,27 @@ https://github.com/HigorSilvaRosa/vue-org-chart/blob/master/src/org-chart/OrgCha
 https://github.com/hukaibaihu/vue-org-tree/blob/master/src/components/org-tree/node.js
 
 
-# vue-org-tree
+# vue-okr-tree
 
-> A simple organization tree chart based on Vue2.x
+> 基于 Vue 2的组织架构树组件
 
-## Usage
+## 使用
 
 ### NPM
 
 ```
 # use npm
-npm i vue2-org-tree
+npm i vue-okr-tree
 
 # use yarn
-yarn add vue2-org-tree
+yarn add vue-okr-tree
 ```
 ### Import Plugins
 
 ``` js
-import Vue from 'vue'
-import Vue2OrgTree from 'vue2-org-tree'
 
-Vue.use(Vue2OrgTree)
+import {VueOkrTree} from 'vue-okr-tree';
+import 'vue-okr-tree/dist/vue-okr-tree.css'
 
 // ...
 ```
@@ -117,21 +116,12 @@ It is called when the mouse leaves the label.
 - params `e` `Event`
 - params `data` `Current node data`
 
-## Example
 
-- default
-
-  ![default](./images/default.png)
-
-- horizontal
-
-  ![horizontal](./images/horizontal.png)
-
-## Browser support
+## 浏览器支持情况
 
   use table layout!
 
-> IE9+、Chrome、Firefox、Opera
+> IE11、Chrome、Firefox、Opera
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
