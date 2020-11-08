@@ -17,7 +17,7 @@
         </div>
       </template>
       <template v-slot:description>
-      该模式必须设置 <code>onlyBothTree</code> ，以及通过 <code>leftData</code>表示左子数的结
+      该模式必须设置 <code>onlyBothTree</code> ，以及通过 <code>leftData</code>表示左子数的结构
       </template>
       <template>
         <pre class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
