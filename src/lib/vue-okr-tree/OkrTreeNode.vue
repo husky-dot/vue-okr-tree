@@ -1,6 +1,7 @@
 <template>
   <div class="org-chart-node"
     @contextmenu="($event) => this.handleContextMenu($event)"
+    v-if="node.visible"
     :class="{
         'collapsed': !node.leftExpanded || !node.expanded,
         'is-leaf': node.isLeaf,

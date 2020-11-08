@@ -90,6 +90,7 @@ export default {
     defaultExpandedKeys: {
       type: Array
     },
+    filterNodeMethod: Function,
     props: {
       default() {
         return {
@@ -133,6 +134,8 @@ export default {
       direction: this.direction,
     })
     this.root = this.store.root;
+    console.log('第一次初始化')
+    console.log(this.root)
   },
   watch: {
     defaultExpandedKeys(newVal) {
@@ -141,6 +144,16 @@ export default {
     }
   },
   methods: {
+    filter(value) {
+      if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
+      this.store.filter(value)
+      if (this.onlyBothTree) {
+        console.log('我来了')
+        this.store.filter(value, 'leftChildNodes')
+      }
+      console.log('过滤完成---------------------------')
+      console.log(this.store.root)
+    },
     getNodeKey(node) {
       return getNodeKey(this.nodeKey, node.data);
     },
@@ -158,6 +171,9 @@ export default {
       if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in setCurrentKey');
       this.store.setCurrentNodeKey(key);
     },
+    remove(data) {
+      this.store.remove(data);
+    },
     // 获取当前被选中节点的 data
     getCurrentNode() {
       const currentNode = this.store.getCurrentNode();
@@ -167,7 +183,16 @@ export default {
       if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in getCurrentKey');
       const currentNode = this.getCurrentNode();
       return currentNode ? currentNode[this.nodeKey] : null;
-    }
+    },
+    append(data, parentNode) {
+      this.store.append(data, parentNode);
+    },
+    insertBefore(data, refNode) {
+      this.store.insertBefore(data, refNode);
+    },
+    insertAfter(data, refNode) {
+      this.store.insertAfter(data, refNode);
+    },
   }
 }
 </script>
@@ -420,7 +445,7 @@ export default {
 
 .horizontal .org-chart-node:only-child::before
 {
-  border-radius: 0 0px 0 0px;
+  border-radius: 0 0px 0 0px !important;
   border-color: #ccc;
 }
 
@@ -479,6 +504,9 @@ export default {
   border-top: 1px solid #ccc;
   width: 12px;
   height: 10px;
+}
+.horizontal .org-chart-node-children::before{
+  width: 20px;
 }
 .horizontal .org-chart-node-left-children::before{
   left: calc(100% - 11px);

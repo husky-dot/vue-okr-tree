@@ -1,19 +1,14 @@
 
+## 文档和事例
 
-https://juejin.im/post/6844903519309283335?utm_source=tuicool&utm_medium=referral#heading-7
-
-https://github.com/HigorSilvaRosa/vue-org-chart/blob/master/src/org-chart/OrgChart.vue
-
-https://github.com/hukaibaihu/vue-org-tree/blob/master/src/components/org-tree/node.js
+地址：http://qjgxv3wn5.hd-bkt.clouddn.com/index.html
 
 
-# vue-okr-tree
+## vue-okr-tree
 
-> 基于 Vue 2的组织架构树组件
+基于 Vue 2的组织架构树组件
 
-## 使用
-
-### NPM
+## Install
 
 ```
 # use npm
@@ -22,7 +17,7 @@ npm i vue-okr-tree
 # use yarn
 yarn add vue-okr-tree
 ```
-### Import Plugins
+## Quick Start
 
 ``` js
 
@@ -36,11 +31,10 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
 
 ``` html
 # css
-<link href="https://unpkg.com/vue2-org-tree/dist/style.css">
+<link href="http://qjge81f6q.hd-bkt.clouddn.com/vue-okr-tree.css">
 
 # js
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue2-org-tree/dist/index.js"></script>
+<script src="http://qjge81f6q.hd-bkt.clouddn.com/vue-okr-tree.umd.min.js"></script>
 ```
 
 ## API
@@ -63,7 +57,7 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
 | props | 配置选项，具体看下表 | object | —  | —
 | node-key | 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的 | String | —  | —
 | default-expanded-keys | 默认展开的节点的 key 的数组(需要注意的是，此时必须设置node-key，其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。) |  array |  — | —
-
+| filter-node-method | 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏 |  Function(value, data, node) |  — | —
 #### props
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值
@@ -79,49 +73,29 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
   node-expand         |  节点被展开时触发的事件  | 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身
   node-collapse        |  节点被关闭时触发的事件  | 共三个参数，依次为：传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身
 node-contextmenu         |  当某一节点被鼠标右键点击时会触发该事件                      | 共四个参数，依次为：event、传递给 data 属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身。
- getNode            |  根据 data 或者 key 拿到 Tree 组件中的 node  | (data) 要获得 node 的 key 或者 data
+
+
+#### 方法
+
+  方法名      | 说明                            | 回调参数
+  ------------------|-----------------------------------------|:----------------------
+  filter |  对树节点进行筛选操作  | 接收一个任意类型的参数，该参数会在 filter-node-method 中作为第一个参数
+ getNode            |  根据 data 或者 key 拿到 Tree 组件中的 node,使用此方法必须设置 node-key 属性  | (data) 要获得 node 的 key 或者 data
  setCurrentNode            |  通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (node) 待被选节点的 node
- setCurrentKey            |  	通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (key) 待被选节点的 key，若为 null 则取消当前高亮的节点
- getCurrentKey            |  获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 null  | —
-  getCurrentNode   |  	获取当前被选中节点的 data，若没有节点被选中则返回 null | —
+  setCurrentKey            |  	通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (key) 待被选节点的 key，若为 null 则取消当前高亮的节点
+getCurrentKey            |  获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 null  | —
+getCurrentNode   |  	获取当前被选中节点的 data，若没有节点被选中则返回 null | —
+remove   |  删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性 | (data) 要删除的节点的 id 或者 data 或者 node
+append   |  为 Tree 中的一个节点追加一个子节点 | 		(data, parentNode) 接收两个参数，1. 要追加的子节点的 data 2. 子节点的 parent 的 data、key 或者 node
+insertBefore   |  为 Tree 的一个节点的前面增加一个节点 | 	(data, refNode) 接收两个参数，1. 要增加的节点的 data 2. 要增加的节点的后一个节点的 data、key 或者 node
+insertAfter   |  为 Tree 的一个节点的后面增加一个节点 | 	(data, refNode) 接收两个参数，1. 要增加的节点的 data 2. 要增加的节点的前一个节点的 data、key 或者 node
 
 
-yy
-
-
-
-### Call events
-
-#### on-expand
-well be called when the collapse-btn clicked
-
-- params `e` `Event`
-- params `data` `Current node data`
-
-#### on-node-click
-well be called when the node-label clicked
-
-- params `e` `Event`
-- params `data` `Current node data`
-
-#### on-node-mouseover
-It is called when the mouse hovers over the label.
-
-- params `e` `Event`
-- params `data` `Current node data`
-
-#### on-node-mouseout
-It is called when the mouse leaves the label.
-
-- params `e` `Event`
-- params `data` `Current node data`
 
 
 ## 浏览器支持情况
 
-  use table layout!
-
-> IE11、Chrome、Firefox、Opera
+Modern browsers and Internet Explorer 10+.
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)

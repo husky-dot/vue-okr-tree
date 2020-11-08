@@ -24,26 +24,6 @@
         <td>当某一节点被鼠标右键点击时会触发该事件</td>
         <td>属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身。</td>
       </tr>
-      <tr>
-        <td>getNode</td>
-        <td>当某一节点被鼠标右键点击时会触发该事件</td>
-        <td>属性的数组中该节点所对应的对象、节点对应的 Node、节点组件本身。</td>
-      </tr>
-      <tr>
-        <td>setCurrentNode</td>
-        <td>通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性</td>
-        <td>(node) 待被选节点的 node</td>
-      </tr>
-      <tr>
-        <td>getCurrentKey</td>
-        <td>获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 null</td>
-        <td>—</td>
-      </tr>
-      <tr>
-        <td>getCurrentNode</td>
-        <td>获取当前被选中节点的 data，若没有节点被选中则返回 null</td>
-        <td>—</td>
-      </tr>
       </tbody>
     </table>
   </div>

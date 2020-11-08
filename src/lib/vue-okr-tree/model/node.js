@@ -26,6 +26,7 @@ export default class Node {
     this.expanded = false;
     this.leftExpanded = false;
     this.isCurrent = false;
+    this.visible = true;
     this.parent = null;
     for (let name in options) {
       if (options.hasOwnProperty(name)) {
@@ -191,5 +192,38 @@ export default class Node {
       if (callback) callback();
     };
     done()
+  }
+  
+  removeChild(child) {
+    const children = this.getChildren() || [];
+    const dataIndex = children.indexOf(child.data);
+    if (dataIndex > -1) {
+      children.splice(dataIndex, 1);
+    }
+
+    const index = this.childNodes.indexOf(child);
+
+    if (index > -1) {
+      this.store && this.store.deregisterNode(child);
+      child.parent = null;
+      this.childNodes.splice(index, 1);
+    }
+
+    this.updateLeafState();
+  }
+  insertBefore(child, ref) {
+    let index;
+    if (ref) {
+      index = this.childNodes.indexOf(ref);
+    }
+    this.insertChild(child, index);
+  }
+  insertAfter(child, ref) {
+    let index;
+    if (ref) {
+      index = this.childNodes.indexOf(ref);
+      if (index !== -1) index += 1;
+    }
+    this.insertChild(child, index);
   }
 }

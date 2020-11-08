@@ -102,6 +102,13 @@
         <td>—</td>
         <td>—</td>
       </tr>
+      <tr>
+        <td>filter-node-method</td>
+        <td>对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏</td>
+        <td>Function(value, data, node)</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
       </tbody>
     </table>
   </div>

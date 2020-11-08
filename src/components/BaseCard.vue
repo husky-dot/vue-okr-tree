@@ -27,7 +27,7 @@ export default {
       this.show = !this.show
       if (this.show) {
         const { height } = this.$slots.default[0].elm.getBoundingClientRect()
-        this.metaHeight = height + 100
+        this.metaHeight = height + 80
       } else {
         this.metaHeight = 0
       }

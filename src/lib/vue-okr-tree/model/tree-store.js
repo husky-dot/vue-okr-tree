@@ -30,6 +30,41 @@ export default class TreeStore {
       }
     }
   }
+  filter (value, childName = 'childNodes') {
+    this.filterRight(value, childName)
+  }
+  // 过滤默认节点
+  filterRight(value, childName) {
+    const filterNodeMethod = this.filterNodeMethod;
+    const traverse = function(node, childName) {
+      let childNodes
+      if (node.root) {
+        childNodes = node.root.childNodes[0][childName]
+      } else {
+        childNodes = node.childNodes
+      }
+      childNodes.forEach((child) => {
+        child.visible = filterNodeMethod.call(child, value, child.data, child);
+        traverse(child, childName);
+      });
+
+      if (!node.visible && childNodes.length) {
+        let allHidden = true;
+        allHidden = !childNodes.some(child => child.visible);
+
+        if (node.root) {
+          node.root.visible = allHidden === false;
+        } else {
+          node.visible = allHidden === false;
+        }
+      }
+      if (!value) return;
+
+      if (node.visible) node.expand();
+    };
+
+    traverse(this, childName);
+  }
 
   registerNode(node) {
     const key = this.key;
@@ -37,6 +72,14 @@ export default class TreeStore {
 
     const nodeKey = node.key;
     if (nodeKey !== undefined) this.nodesMap[node.key] = node;
+  }
+  deregisterNode(node) {
+    const key = this.key;
+    if (!key || !node || !node.data) return;
+    node.childNodes.forEach(child => {
+      this.deregisterNode(child);
+    });
+    delete this.nodesMap[node.key];
   }
   getNode(data) {
     if (data instanceof Node) return data;
@@ -77,5 +120,29 @@ export default class TreeStore {
   }
   getCurrentNode() {
     return this.currentNode;
+  }
+  remove(data) {
+    const node = this.getNode(data);
+    if (node && node.parent) {
+      if (node === this.currentNode) {
+        this.currentNode = null;
+      }
+      node.parent.removeChild(node);
+    }
+  }
+  append(data, parentData) {
+    const parentNode = parentData ? this.getNode(parentData) : this.root;
+
+    if (parentNode) {
+      parentNode.insertChild({ data });
+    }
+  }
+  insertBefore(data, refData) {
+    const refNode = this.getNode(refData);
+    refNode.parent.insertBefore({ data }, refNode);
+  }
+  insertAfter(data, refData) {
+    const refNode = this.getNode(refData);
+    refNode.parent.insertAfter({ data }, refNode);
   }
 }
