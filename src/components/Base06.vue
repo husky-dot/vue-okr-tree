@@ -108,7 +108,6 @@ export default {
     },
     methods: {
       renderContent (h, node) {
-        console.log(node)
         return (
           <div class=['diy-wrapper', node.isCurrent ? 'current-select' : ''] >
             <div class="diy-con-name">{node.data.label}</div>

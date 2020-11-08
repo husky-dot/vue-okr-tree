@@ -204,8 +204,6 @@ export default {
     methods: {
       filterNode(value, data) {
         if (!value) return true;
-        console.log(data.label)
-        console.log(data.label.indexOf(value) !== -1)
         return data.label.indexOf(value) !== -1;
       },    
       getNodeById () {
@@ -286,8 +284,6 @@ export default {
   methods: {
     filterNode(value, data) {
       if (!value) return true;
-      console.log(data.label)
-      console.log(data.label.indexOf(value) !== -1)
       return data.label.indexOf(value) !== -1;
     },
     getNodeById () {

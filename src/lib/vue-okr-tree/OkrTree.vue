@@ -134,8 +134,6 @@ export default {
       direction: this.direction,
     })
     this.root = this.store.root;
-    console.log('第一次初始化')
-    console.log(this.root)
   },
   watch: {
     defaultExpandedKeys(newVal) {
@@ -148,11 +146,8 @@ export default {
       if (!this.filterNodeMethod) throw new Error('[Tree] filterNodeMethod is required when filter');
       this.store.filter(value)
       if (this.onlyBothTree) {
-        console.log('我来了')
         this.store.filter(value, 'leftChildNodes')
       }
-      console.log('过滤完成---------------------------')
-      console.log(this.store.root)
     },
     getNodeKey(node) {
       return getNodeKey(this.nodeKey, node.data);

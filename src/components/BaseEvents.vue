@@ -20,7 +20,6 @@
 </template>
 <script>
 import mixins from './mixins'
-console.log(Prism)
 export default {
   mixins: [mixins],
   data () {

@@ -234,8 +234,6 @@ export default {
       this.tree.$emit('node-click', this.node.data, this.node, this);
     },
     handleBtnClick (isLeft) {
-      console.log(this.node.level)
-      console.log(isLeft)
       isLeft = isLeft === 'left'
       const store = this.tree.store;
       // 表示是OKR飞书模式

@@ -214,7 +214,6 @@ export default {
     },
     methods: {
       renderContent (h, node) {
-        console.log(node)
         const cls = ['diy-wrapper']
         if (node.isCurrent) {
           cls.push('current-select')
@@ -255,7 +254,6 @@ export default {
   },
   methods: {
     renderContent (h, node) {
-      console.log(node)
       const cls = ['diy-wrapper']
       if (node.isCurrent) {
         cls.push('current-select')
