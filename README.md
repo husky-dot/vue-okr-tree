@@ -1,7 +1,7 @@
 
 ## 文档和事例
 
-地址：http://qjgxv3wn5.hd-bkt.clouddn.com/index.html
+地址：http://www.longstudy.club/vue-okr-tree-doc/index.html
 
 
 ## vue-okr-tree
