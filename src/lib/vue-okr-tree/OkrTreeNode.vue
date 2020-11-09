@@ -10,24 +10,26 @@
         'only-both-tree-node':node.level === 1 && tree.store.onlyBothTree
       }"
     >
-    <div class="org-chart-node-left-children"
-      v-if="showLeftChildNode"
-      :style="computLeftNodeStyle"
-      >
-      <OkrTreeNode
-        v-for="child in leftChildNodes"
-        :show-collapsable="showCollapsable"
-        :node="child"
-        :label-width="labelWidth"
-        :label-height="labelHeight"
-        :renderContent="renderContent"
-        :selected-key="selectedKey"
-        :node-key="nodeKey"
-        :key="getNodeKey(child)"
-        :props="props"
-        is-left-child-node
-      ></OkrTreeNode>
-    </div>
+    <transition :duration="0" :name="animateName">
+      <div class="org-chart-node-left-children"
+        v-if="showLeftChildNode"
+        v-show="node.leftExpanded"
+        >
+        <OkrTreeNode
+          v-for="child in leftChildNodes"
+          :show-collapsable="showCollapsable"
+          :node="child"
+          :label-width="labelWidth"
+          :label-height="labelHeight"
+          :renderContent="renderContent"
+          :selected-key="selectedKey"
+          :node-key="nodeKey"
+          :key="getNodeKey(child)"
+          :props="props"
+          is-left-child-node
+        ></OkrTreeNode>
+      </div>
+    </transition>
     <div class="org-chart-node-label">
       <div v-if="showNodeBtn && leftChildNodes.length > 0"
         class="org-chart-node-left-btn"
@@ -42,6 +44,7 @@
         <node-content :node="node" >
           <slot>
             {{node.label}}
+            {{(!isLeftChildNode && node.childNodes && node.childNodes.length > 0)}}
           </slot>
         </node-content>
       </div>
@@ -51,25 +54,25 @@
         @click="handleBtnClick('right')"
       ></div>
     </div>
-
-    <div class="org-chart-node-children"
-      v-if="!isLeftChildNode && node.childNodes && node.childNodes.length > 0"
-      :style="computNodeStyle"
-      >
-      <OkrTreeNode
-        v-for="child in node.childNodes"
-        :show-collapsable="showCollapsable"
-        :node="child"
-        :label-width="labelWidth"
-        :label-height="labelHeight"
-        :renderContent="renderContent"
-        :selected-key="selectedKey"
-        :node-key="nodeKey"
-        :key="getNodeKey(child)"
-        :props="props"
-      ></OkrTreeNode>
-    </div>
-
+    <transition :duration="0" :name="animateName">
+      <div class="org-chart-node-children"
+        v-if="(!isLeftChildNode && node.childNodes && node.childNodes.length > 0)"
+        v-show="node.expanded"
+        >
+        <OkrTreeNode
+          v-for="child in node.childNodes"
+          :show-collapsable="showCollapsable"
+          :node="child"
+          :label-width="labelWidth"
+          :label-height="labelHeight"
+          :renderContent="renderContent"
+          :selected-key="selectedKey"
+          :node-key="nodeKey"
+          :key="getNodeKey(child)"
+          :props="props"
+        ></OkrTreeNode>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -138,6 +141,12 @@ export default {
       }
       return []
     },
+    animateName () {
+      if (this.tree.store.animate) {
+        return this.tree.store.animateName
+      }
+      return ''
+    },  
     // 是否显示展开按钮
     showNodeBtn () {
       if (this.isLeftChildNode) {
@@ -263,8 +272,7 @@ export default {
         event.preventDefault();
       }
       this.tree.$emit('node-contextmenu', event, this.node.data, this.node, this);
-    },
-    
+    }
   }
 }
 </script>

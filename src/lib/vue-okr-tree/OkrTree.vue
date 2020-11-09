@@ -101,6 +101,15 @@ export default {
         };
       }
     },
+    // 动画
+    animate: {
+      type: Boolean,
+      default: false
+    },
+    animateName: {
+      type: String,
+      default: 'okr-fade-in'
+    }
   },
   computed : {
     ondeClass () {
@@ -132,6 +141,8 @@ export default {
       currentLableClassName: this.currentLableClassName,
       onlyBothTree: this.onlyBothTree,
       direction: this.direction,
+      animate: this.animate,
+      animateName: this.animateName,
     })
     this.root = this.store.root;
   },
@@ -623,5 +634,4 @@ export default {
   height: 50%;
   width: 20px;
 }
-
 </style>
