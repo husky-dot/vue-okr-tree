@@ -59,7 +59,7 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
 | default-expanded-keys | 默认展开的节点的 key 的数组(需要注意的是，此时必须设置node-key，其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。) |  array |  — | —
 | filter-node-method | 对树节点进行筛选时执行的方法，返回 true 表示这个节点可以显示，返回 false 则表示这个节点会被隐藏 |  Function(value, data, node) |  — | —
 | aniamte | 是否开启节点展开的过渡动画 |  Boolean |  — |  false
-| animate-name | 过渡动画名称 |  String |  — |  okr-fade-in-linear/okr-fade-in/okr-zoom-in-center/okr-zoom-in-top/okr-zoom-in-bottom
+| animate-name | 过渡动画名称，支持动画类型有 okr-fade-in-linear/okr-fade-in/okr-zoom-in-center/okr-zoom-in-top/okr-zoom-in-bottom |  String |  — |  okr-zoom-in-center
 
 #### props
 

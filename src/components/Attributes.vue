@@ -138,6 +138,20 @@
           <td>—</td>
           <td>—</td>
         </tr>
+        <tr>
+          <td>aniamte</td>
+          <td>是否开启节点展开的过渡动画</td>
+          <td>Boolean</td>
+          <td>—</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>animate-name</td>
+          <td>过渡动画名称，支持动画类型有 okr-fade-in-linear/okr-fade-in/okr-zoom-in-center/okr-zoom-in-top/okr-zoom-in-bottom</td>
+          <td>String</td>
+          <td>—</td>
+          <td>okr-zoom-in-center</td>
+        </tr>
       </tbody>
     </table>
   </div>
