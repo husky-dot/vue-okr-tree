@@ -1,49 +1,56 @@
-import Node from './node';
-import { getNodeKey } from './util';
+import Node from "./node";
+import { getNodeKey } from "./util";
 export default class TreeStore {
   constructor(options) {
     this.currentNode = null;
     this.currentNodeKey = null;
 
-    for (let option in options) { 
+    for (let option in options) {
       if (options.hasOwnProperty(option)) {
         this[option] = options[option];
       }
     }
     this.nodesMap = {};
-    this.root = new Node({
-      data: this.data,
-      store: this
-    }, false)
+    this.root = new Node(
+      {
+        data: this.data,
+        store: this
+      },
+      false
+    );
 
     if (this.root.store.onlyBothTree) {
-      if (!this.leftData) throw new Error('[Tree] leftData is required in onlyBothTree')
+      if (!this.leftData)
+        throw new Error("[Tree] leftData is required in onlyBothTree");
       if (this.leftData) {
-        this.isLeftChilds = new Node({
-          data: this.leftData,
-          store: this
-        }, true)
+        this.isLeftChilds = new Node(
+          {
+            data: this.leftData,
+            store: this
+          },
+          true
+        );
         if (this.isLeftChilds) {
-          this.root.childNodes[0].leftChildNodes = this.isLeftChilds.childNodes[0].childNodes
-          this.root.childNodes[0].leftExpanded = this.isLeftChilds.childNodes[0].leftExpanded
+          this.root.childNodes[0].leftChildNodes = this.isLeftChilds.childNodes[0].childNodes;
+          this.root.childNodes[0].leftExpanded = this.isLeftChilds.childNodes[0].leftExpanded;
         }
       }
     }
   }
-  filter (value, childName = 'childNodes') {
-    this.filterRight(value, childName)
+  filter(value, childName = "childNodes") {
+    this.filterRight(value, childName);
   }
   // 过滤默认节点
   filterRight(value, childName) {
     const filterNodeMethod = this.filterNodeMethod;
     const traverse = function(node, childName) {
-      let childNodes
+      let childNodes;
       if (node.root) {
-        childNodes = node.root.childNodes[0][childName]
+        childNodes = node.root.childNodes[0][childName];
       } else {
-        childNodes = node.childNodes
+        childNodes = node.childNodes;
       }
-      childNodes.forEach((child) => {
+      childNodes.forEach(child => {
         child.visible = filterNodeMethod.call(child, value, child.data, child);
         traverse(child, childName);
       });
@@ -83,15 +90,15 @@ export default class TreeStore {
   }
   getNode(data) {
     if (data instanceof Node) return data;
-    const key = typeof data !== 'object' ? data : getNodeKey(this.key, data);
+    const key = typeof data !== "object" ? data : getNodeKey(this.key, data);
     return this.nodesMap[key] || null;
   }
   setDefaultExpandedKeys(keys) {
     keys = keys || [];
-    this.defaultExpandedKeys = keys
-    keys.forEach((key) => {
-      const node = this.getNode(key)
-      if (node) node.expand(null, true)
+    this.defaultExpandedKeys = keys;
+    keys.forEach(key => {
+      const node = this.getNode(key);
+      if (node) node.expand(null, true);
     });
   }
   setCurrentNode(currentNode) {
@@ -103,7 +110,7 @@ export default class TreeStore {
     this.currentNode.isCurrent = true;
   }
   setUserCurrentNode(node) {
-    const key = node.key
+    const key = node.key;
     const currNode = this.nodesMap[key];
     this.setCurrentNode(currNode);
   }

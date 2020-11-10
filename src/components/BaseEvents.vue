@@ -6,23 +6,27 @@
       <template v-slot:header>
         <div class="component-wrapper">
           <vue-okr-tree
-          :data="testData"
-          @node-click="handleNodeClick"
-          @node-contextmenu="handleCoxMenu"
+            :data="testData"
+            @node-click="handleNodeClick"
+            @node-contextmenu="handleCoxMenu"
           />
         </div>
       </template>
       <template>
-        <pre ref="pre" class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          ref="pre"
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       content: `<vue-okr-tree
   :data="testData"
@@ -68,19 +72,17 @@ export default {
     }
   }
 <\/script>`
-    }
+    };
   },
   methods: {
-    handleNodeClick (data) {
-      alert(`我是${data.label},我被点击了`)
+    handleNodeClick(data) {
+      alert(`我是${data.label},我被点击了`);
     },
-    handleCoxMenu (event, data) {
-      alert(`我是${data.label},我的右键被点击了`)
+    handleCoxMenu(event, data) {
+      alert(`我是${data.label},我的右键被点击了`);
     }
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -16,16 +16,19 @@
         通过<code>show-collapsable</code>设置节点可被展开。
       </template>
       <template>
-        <pre class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       content: `<vue-okr-tree :data="testData" direction="horizontal" show-collapsable></vue-okr-tree> \n
 <script>
@@ -59,11 +62,9 @@ export default {
     }
   }
 <\/script>`
-    }
+    };
   }
-}
+};
 </script>
 
-<style scope>
-
-</style>
+<style scope></style>

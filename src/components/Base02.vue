@@ -5,26 +5,26 @@
     <BaseCard>
       <template v-slot:header>
         <div class="component-wrapper">
-          <vue-okr-tree
-            :data="testData"
-            direction="horizontal"
-          ></vue-okr-tree>
+          <vue-okr-tree :data="testData" direction="horizontal"></vue-okr-tree>
         </div>
       </template>
       <template v-slot:description>
         将 <code>direction</code> 设置为 <code>horizontal</code> 来展示水平方向
       </template>
       <template>
-        <pre class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       content: `<vue-okr-tree :data="testData" direction="horizontal"></vue-okr-tree> \n
 <script>
@@ -58,11 +58,9 @@ export default {
     }
   }
 <\/script>`
-    }
+    };
   }
-}
+};
 </script>
 
-<style scope>
-
-</style>
+<style scope></style>

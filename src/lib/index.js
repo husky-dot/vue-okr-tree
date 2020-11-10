@@ -1,1 +1,1 @@
-export { default as VueOkrTree } from './vue-okr-tree/OkrTree.vue'
+export { default as VueOkrTree } from "./vue-okr-tree/OkrTree.vue";

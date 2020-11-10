@@ -1,4 +1,4 @@
-export const NODE_KEY = '$treeNodeId';
+export const NODE_KEY = "$treeNodeId";
 
 export const markNodeData = function(node, data) {
   if (!data || data[NODE_KEY]) return;
@@ -17,7 +17,7 @@ export const getNodeKey = function(key, data) {
 
 export const findNearestComponent = (element, componentName) => {
   let target = element;
-  while (target && target.tagName !== 'BODY') {
+  while (target && target.tagName !== "BODY") {
     if (target.__vue__ && target.__vue__.$options.name === componentName) {
       return target.__vue__;
     }
@@ -25,4 +25,3 @@ export const findNearestComponent = (element, componentName) => {
   }
   return null;
 };
-

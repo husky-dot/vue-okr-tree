@@ -16,19 +16,25 @@
         </div>
       </template>
       <template v-slot:description>
-        通过 <code>label-class-name</code>  设置节点的样式，支持字符和函数方式。通过 <code>current-lable-class-name</code> 设置当前节点选中的样式，支持字符和函数方式。
+        通过
+        <code>label-class-name</code> 设置节点的样式，支持字符和函数方式。通过
+        <code>current-lable-class-name</code>
+        设置当前节点选中的样式，支持字符和函数方式。
       </template>
       <template>
-        <pre class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       content: `<vue-okr-tree 
   :data="testData" 
@@ -87,24 +93,24 @@ export default {
 }
 </style>
 `
-    }
+    };
   },
   methods: {
-    renderLabelClass (node) {
-      return 'label-class-blue'
+    renderLabelClass(node) {
+      return "label-class-blue";
     },
-    renderCurrentClass (node) {
-      return 'label-bg-blue'
+    renderCurrentClass(node) {
+      return "label-bg-blue";
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
-.label-class-blue{
+.label-class-blue {
   color: #1989fa;
 }
-.label-bg-blue{
+.label-bg-blue {
   background: #1989fa;
   color: #fff;
 }

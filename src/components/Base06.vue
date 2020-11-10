@@ -15,52 +15,67 @@
         </div>
       </template>
       <template v-slot:description>
-        通过 <code>render-content</code>  渲染节点内容。
+        通过 <code>render-content</code> 渲染节点内容。
       </template>
       <template>
-        <pre class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
-    testData: [{
-        label: 'xxx科技有有限公司',
-        content: '这是一个有活力的公司',
-        children: [{
-          label: '产品研发部',
-          content: '这是一个有活力的产品研发部',
-          children: [{
-            label: '研发-前端',
-            content: '这是一个有活力的研发-前端'
-          }, {
-            label: '研发-后端',
-            content: '这是一个有活力的研发-后端'
-          }, {
-            label: 'UI 设计',
-            content: '这是一个有活力的UI 设计'
-          }]
-        }, {
-          label: '销售部',
-          content: '这是一个有活力的销售部',
-          children: [{
-            label: '销售一部',
-            content: '这是一个有活力的销售一部'
-            },{
-              label: '销售二部',
-              content: '这是一个有活力的销售二部'
+      testData: [
+        {
+          label: "xxx科技有有限公司",
+          content: "这是一个有活力的公司",
+          children: [
+            {
+              label: "产品研发部",
+              content: "这是一个有活力的产品研发部",
+              children: [
+                {
+                  label: "研发-前端",
+                  content: "这是一个有活力的研发-前端"
+                },
+                {
+                  label: "研发-后端",
+                  content: "这是一个有活力的研发-后端"
+                },
+                {
+                  label: "UI 设计",
+                  content: "这是一个有活力的UI 设计"
+                }
+              ]
+            },
+            {
+              label: "销售部",
+              content: "这是一个有活力的销售部",
+              children: [
+                {
+                  label: "销售一部",
+                  content: "这是一个有活力的销售一部"
+                },
+                {
+                  label: "销售二部",
+                  content: "这是一个有活力的销售二部"
+                }
+              ]
+            },
+            {
+              label: "财务部",
+              content: "这是一个有活力的财务部"
             }
           ]
-        },{
-          label: '财务部',
-          content: '这是一个有活力的财务部'
-        }]
-      }],
+        }
+      ],
       content: `<vue-okr-tree 
   :data="testData" 
   direction="horizontal" 
@@ -118,42 +133,42 @@ export default {
     },
   }
 <\/script>`
-    }
+    };
   },
   methods: {
-    renderContent (h, node) {
+    renderContent(h, node) {
       return (
-        <div class={`diy-wrapper ${node.isCurrent ? 'current-select' : ''}` }>
+        <div class={`diy-wrapper ${node.isCurrent ? "current-select" : ""}`}>
           <div class="diy-con-name">{node.data.label}</div>
           <div class="diy-con-content">{node.data.content}</div>
         </div>
-      )
+      );
     }
-  },
-}
+  }
+};
 </script>
 
 <style>
-.diy-wrapper{
+.diy-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.diy-wrapper .diy-con-name{
+.diy-wrapper .diy-con-name {
   font-size: 12px;
   line-height: 18px;
   color: #646a73;
 }
-.diy-wrapper .diy-con-content{
+.diy-wrapper .diy-con-content {
   color: #1f2329;
   line-height: 22px;
   word-break: break-word;
   font-size: 14px;
 }
-.diy-wrapper.current-select .diy-con-name{
+.diy-wrapper.current-select .diy-con-name {
   color: red;
 }
-.diy-wrapper.current-select .diy-con-content{
+.diy-wrapper.current-select .diy-con-content {
   color: #1989fa;
 }
 </style>

@@ -9,16 +9,20 @@
         </div>
       </template>
       <template>
-        <pre ref="pre" class="language-css" v-html="Prism.highlight(content, Prism.languages.html, 'html')"></pre>
+        <pre
+          ref="pre"
+          class="language-css"
+          v-html="Prism.highlight(content, Prism.languages.html, 'html')"
+        ></pre>
       </template>
     </BaseCard>
   </div>
 </template>
 <script>
-import mixins from './mixins'
+import mixins from "./mixins";
 export default {
   mixins: [mixins],
-  data () {
+  data() {
     return {
       content: `<vue-okr-tree :data="testData"></vue-okr-tree> \n
 <script>
@@ -52,11 +56,9 @@ export default {
     }
   }
 <\/script>`
-    }
+    };
   }
-}
+};
 </script>
 
-<style scope>
-
-</style>
+<style scope></style>

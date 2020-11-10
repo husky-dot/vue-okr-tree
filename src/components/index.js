@@ -1,17 +1,18 @@
-export { default as Base01} from './Base01.vue'
-export { default as Base02} from './Base02.vue'
-export { default as Base03} from './Base03.vue'
-export { default as Base04} from './Base04.vue'
-export { default as Base05} from './Base05.vue'
-export { default as Base06} from './Base06.vue'
-export { default as Base041} from './Base041.vue'
-export { default as Base07} from './Base07.vue'
-export { default as Base08} from './Base08.vue'
-export { default as Attributes} from './Attributes.vue'
-export { default as Props} from './Props.vue'
-export { default as Events} from './Events.vue'
-export { default as BaseFilter} from './BaseFilter.vue'
-export { default as BaseFilterOrk} from './BaseFilterOrk.vue'
-export { default as Methods} from './Methods.vue'
-export { default as BaseEvents} from './BaseEvents.vue'
-export { default as BaseEventsOkr} from './BaseEventsOkr.vue'
+export { default as Base01 } from "./Base01.vue";
+export { default as Base02 } from "./Base02.vue";
+export { default as Base03 } from "./Base03.vue";
+export { default as Base04 } from "./Base04.vue";
+export { default as Base05 } from "./Base05.vue";
+export { default as Base06 } from "./Base06.vue";
+export { default as Base061 } from "./Base061.vue";
+export { default as Base041 } from "./Base041.vue";
+export { default as Base07 } from "./Base07.vue";
+export { default as Base08 } from "./Base08.vue";
+export { default as Attributes } from "./Attributes.vue";
+export { default as Props } from "./Props.vue";
+export { default as Events } from "./Events.vue";
+export { default as BaseFilter } from "./BaseFilter.vue";
+export { default as BaseFilterOrk } from "./BaseFilterOrk.vue";
+export { default as Methods } from "./Methods.vue";
+export { default as BaseEvents } from "./BaseEvents.vue";
+export { default as BaseEventsOkr } from "./BaseEventsOkr.vue";
