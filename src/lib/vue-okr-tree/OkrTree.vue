@@ -156,6 +156,9 @@ export default {
     this.root = this.store.root;
   },
   watch: {
+    data(newVal) {
+      this.store.setData(newVal);
+    },
     defaultExpandedKeys(newVal) {
       this.store.defaultExpandedKeys = newVal;
       this.store.setDefaultExpandedKeys(newVal);

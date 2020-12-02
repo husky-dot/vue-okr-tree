@@ -88,6 +88,27 @@ export default class TreeStore {
     });
     delete this.nodesMap[node.key];
   }
+  setData(newVal) {
+    const instanceChanged = newVal !== this.root.data;
+    if (instanceChanged) {
+      this.root.setData(newVal);
+    } else {
+      this.root.updateChildren();
+    }
+  }
+  updateChildren(key, data) {
+    const node = this.nodesMap[key];
+    if (!node) return;
+    const childNodes = node.childNodes;
+    for (let i = childNodes.length - 1; i >= 0; i--) {
+      const child = childNodes[i];
+      this.remove(child.data);
+    }
+    for (let i = 0, j = data.length; i < j; i++) {
+      const child = data[i];
+      this.append(child, node.data);
+    }
+  }
   getNode(data) {
     if (data instanceof Node) return data;
     const key = typeof data !== "object" ? data : getNodeKey(this.key, data);
