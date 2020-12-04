@@ -19,6 +19,14 @@ export default class TreeStore {
       false
     );
 
+    
+    if (this.lazy && this.load) {
+      const loadFn = this.load;
+      loadFn(this.root, (data) => {
+        this.root.doCreateChildren(data);
+      })
+    }
+
     if (this.root.store.onlyBothTree) {
       if (!this.leftData)
         throw new Error("[Tree] leftData is required in onlyBothTree");
@@ -43,6 +51,7 @@ export default class TreeStore {
   // 过滤默认节点
   filterRight(value, childName) {
     const filterNodeMethod = this.filterNodeMethod;
+    const lazy = this.lazy;
     const traverse = function(node, childName) {
       let childNodes;
       if (node.root) {
@@ -67,7 +76,7 @@ export default class TreeStore {
       }
       if (!value) return;
 
-      if (node.visible) node.expand();
+      if (node.visible && !node.isLeaf && !lazy) node.expand();
     };
 
     traverse(this, childName);

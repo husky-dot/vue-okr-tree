@@ -118,7 +118,12 @@ export default {
     animateDuration: {
       type: Number,
       default: 200
-    }
+    },
+    lazy: {
+      type: Boolean,
+      default: false
+    },
+    load: Function,
   },
   computed: {
     ondeClass() {
@@ -141,6 +146,8 @@ export default {
       data: this.data,
       leftData: this.leftData,
       props: this.props,
+      lazy: this.lazy,
+      load: this.load,
       defaultExpandedKeys: this.defaultExpandedKeys,
       showCollapsable: this.showCollapsable,
       currentNodeKey: this.currentNodeKey,

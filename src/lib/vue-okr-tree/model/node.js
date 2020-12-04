@@ -197,6 +197,13 @@ export default class Node {
     }
     this.isLeaf = false;
   }
+
+  doCreateChildren(array, defaultProps = {}) {
+    array.forEach((item) => {
+      this.insertChild(objectAssign({ data: item }, defaultProps), undefined, true);
+    });
+  }
+
   // 节点的收起
   collapse() {
     this.expanded = false;
@@ -252,3 +259,5 @@ export default class Node {
     this.insertChild(child, index);
   }
 }
+
+
