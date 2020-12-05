@@ -1,7 +1,9 @@
 ## 更新日志
 
- 更新时间 2020/12/02 
- 修复异步修改data不渲染问题 对应版本：vue-okr-tree@1.0.5
+ * 更新时间 2020/12/02 
+   * 修复异步修改data不渲染问题 对应版本：vue-okr-tree@1.0.5
+ * 更新时间 2020/12/05
+   * 修改部分展示 bug 对应版本：vue-okr-tree@1.0.6
 ## 文档和事例
 
 地址：http://www.longstudy.club/vue-okr-tree-doc/index.html

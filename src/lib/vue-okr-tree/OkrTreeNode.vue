@@ -5,9 +5,10 @@
     v-if="node.visible"
     :class="{
       collapsed: !node.leftExpanded || !node.expanded,
-      'is-leaf': node.isLeaf,
+      'is-leaf': isLeaf,
       'is-current': node.isCurrent,
       'is-left-child-node': isLeftChildNode,
+      'is-not-child': node.level === 1 && node.childNodes.length <= 0 && leftChildNodes.length <= 0,
       'only-both-tree-node': node.level === 1 && tree.store.onlyBothTree
     }"
   >
@@ -32,9 +33,15 @@
         ></OkrTreeNode>
       </div>
     </transition>
-    <div class="org-chart-node-label">
+    <div class="org-chart-node-label"
+      :class="{
+        'is-root-label': node.level === 1,
+        'is-not-right-child': node.level === 1 && node.childNodes.length <= 0,
+        'is-not-left-child': node.level === 1 && leftChildNodes.length <= 0
+      }"
+    >
       <div
-        v-if="showNodeBtn && leftChildNodes.length > 0"
+        v-if="showNodeLeftBtn && leftChildNodes.length > 0"
         class="org-chart-node-left-btn"
         :class="{ expanded: node.leftExpanded }"
         @click="handleBtnClick('left')"
@@ -136,6 +143,17 @@ export default {
     }
   },
   computed: {
+    isLeaf () {
+      if (this.node.level === 1) {
+        if (this.leftChildNodes.length == 0 && this.node.childNodes.length == 0) {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return this.node.isLeaf
+      }
+    },
     leftChildNodes() {
       if (this.tree.store.onlyBothTree) {
         if (this.isLeftChildNode) {
@@ -162,16 +180,23 @@ export default {
     showNodeBtn() {
       if (this.isLeftChildNode) {
         return (
-          this.tree.store.direction === "horizontal" &&
+          (this.tree.store.direction === "horizontal" &&
           this.showCollapsable &&
-          this.leftChildNodes.length > 0
+          this.leftChildNodes.length > 0) || this.level === 1
         );
       }
       return (
         this.showCollapsable &&
         this.node.childNodes &&
         this.node.childNodes.length > 0
-      );
+      )
+    },
+    showNodeLeftBtn() {
+      return (
+        (this.tree.store.direction === "horizontal" &&
+        this.showCollapsable &&
+        this.leftChildNodes.length > 0) 
+      )
     },
     // 节点的宽度
     computeLabelStyle() {
