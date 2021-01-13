@@ -214,6 +214,10 @@ export default {
     },
     insertAfter(data, refNode) {
       this.store.insertAfter(data, refNode);
+    },
+    updateKeyChildren(key, data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      this.store.updateChildren(key, data);
     }
   }
 };
