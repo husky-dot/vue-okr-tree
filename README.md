@@ -5,9 +5,9 @@
  * 更新时间 2020/12/05
    * 修改部分展示 bug 对应版本：vue-okr-tree@1.0.6
  * 更新时间 2021/01/13
-  * 增加 updateKeyChildren 方法：vue-okr-tree@1.0.7
-
-
+   * 增加 updateKeyChildren 方法：vue-okr-tree@1.0.7
+ * 更新时间 2021/02/03
+   * 增加 node-btn-content 属性，对展开圆圈内容自定义处理  vue-okr-tree@1.0.8
 ## 文档和事例
 
 地址：http://www.longstudy.club/vue-okr-tree-doc/index.html
@@ -63,6 +63,7 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
 | show-collapsable | 节点是否可被展开 | Boolean | — | false
 | default-expand-all | 是否默认展开所有节点，该参数只有在 show-collapsable 为 true 时有效 | Boolean | — | false
 | render-content | 树节点的内容区的渲染 Function |  Function(h, node) | —  | —
+| node-btn-content | 展开的按钮内容渲染 Function |  Function(h, node) | —  | —
 | props | 配置选项，具体看下表 | object | —  | —
 | node-key | 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的 | String | —  | —
 | default-expanded-keys | 默认展开的节点的 key 的数组(需要注意的是，此时必须设置node-key，其值为节点数据中的一个字段名，该字段在整棵树中是唯一的。) |  array |  — | —
