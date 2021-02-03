@@ -1,7 +1,13 @@
 ## 更新日志
 
- 更新时间 2020/12/02 
- 修复异步修改data不渲染问题 对应版本：vue-okr-tree@1.0.5
+ * 更新时间 2020/12/02 
+   * 修复异步修改data不渲染问题 对应版本：vue-okr-tree@1.0.5
+ * 更新时间 2020/12/05
+   * 修改部分展示 bug 对应版本：vue-okr-tree@1.0.6
+ * 更新时间 2021/01/13
+  * 增加 updateKeyChildren 方法：vue-okr-tree@1.0.7
+
+
 ## 文档和事例
 
 地址：http://www.longstudy.club/vue-okr-tree-doc/index.html
@@ -86,6 +92,7 @@ node-contextmenu         |  当某一节点被鼠标右键点击时会触发该�
   方法名      | 说明                            | 回调参数
   ------------------|-----------------------------------------|:----------------------
   filter |  对树节点进行筛选操作  | 接收一个任意类型的参数，该参数会在 filter-node-method 中作为第一个参数
+  updateKeyChildren |  通过 keys 设置节点子元素，使用此方法必须设置 node-key 属性  | (key, data) 接收两个参数，1. 节点 key 2. 节点数据的数组
  getNode            |  根据 data 或者 key 拿到 Tree 组件中的 node,使用此方法必须设置 node-key 属性  | (data) 要获得 node 的 key 或者 data
  setCurrentNode            |  通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (node) 待被选节点的 node
   setCurrentKey            |  	通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性  | (key) 待被选节点的 key，若为 null 则取消当前高亮的节点

@@ -217,6 +217,10 @@ export default {
     },
     insertAfter(data, refNode) {
       this.store.insertAfter(data, refNode);
+    },
+    updateKeyChildren(key, data) {
+      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      this.store.updateChildren(key, data);
     }
   }
 };
@@ -457,7 +461,7 @@ export default {
   border: 0 none;
 }
 /*将垂直连接器添加回最后的节点*/
-.horizontal .org-chart-node:not(.is-left-child-node):last-child::before {
+.horizontal .org-chart-node:not(.is-left-child-node):not(.is-not-child):last-child::before {
   border-bottom: 1px solid #ccc;
   border-radius: 0 0px 0 5px;
 }
@@ -634,6 +638,15 @@ export default {
   height: 50%;
   width: 10px;
 }
+.horizontal .org-chart-node .is-root-label.is-not-right-child::after,
+.horizontal .org-chart-node .is-root-label.is-not-left-child::before {
+  display: none !important;
+}
+/* .horizontal .org-chart-node.collapsed .is-root-label.is-right-child::after,
+.horizontal .org-chart-node.collapsed .is-root-label.is-left-child::before {
+  display: block;
+} */
+
 .horizontal .is-left-child-node.collapsed .org-chart-node-label::before {
   left: -10px;
 }

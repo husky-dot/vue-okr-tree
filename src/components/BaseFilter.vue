@@ -23,6 +23,7 @@
             <button @click="append">为销售部门增加新的部门</button>
             <button @click="insertBefore">为销售部之前增加一个总部</button>
             <button @click="insertAfter">为销售部之后增加一个总部</button>
+            <button @click="updateKeyChildren">更新销售部子部门</button>
           </div>
           <vue-okr-tree
             ref="tree"
@@ -217,6 +218,30 @@ export default {
         } else {
           this.$refs.tree.insertAfter(appData, node)
         }
+      },
+      updateKeyChildren () {
+        const data = [
+          {
+            id: 7,
+            label: "销售一部",
+            children: [{
+              id: 1117,
+              label:"销售一部--子一"
+            },{
+              id: 1118,
+              label:"销售一部--子二"
+            }]
+          },
+          {
+            id: 8,
+            label: "销售二部"
+          },
+          {
+            id: 77,
+            label: "销售三部"
+          }
+        ]
+        this.$refs.tree.updateKeyChildren(6, data);
       }
     }
   }
@@ -298,6 +323,30 @@ export default {
       } else {
         this.$refs.tree.insertAfter(appData, node);
       }
+    },
+    updateKeyChildren () {
+      const data = [
+        {
+          id: 7,
+          label: "销售一部",
+          children: [{
+            id: 1117,
+            label:"销售一部--子一"
+          },{
+            id: 1118,
+            label:"销售一部--子二"
+          }]
+        },
+        {
+          id: 8,
+          label: "销售二部"
+        },
+        {
+          id: 77,
+          label: "销售三部"
+        }
+      ]
+      this.$refs.tree.updateKeyChildren(6, data);
     }
   }
 };

@@ -17,6 +17,13 @@
           </td>
         </tr>
         <tr>
+          <td>updateKeyChildren</td>
+          <td>通过 keys 设置节点子元素，使用此方法必须设置 node-key 属性</td>
+          <td>
+          (key, data) 接收两个参数，1. 节点 key 2. 节点数据的数组
+          </td>
+        </tr>
+        <tr>
           <td>getNode</td>
           <td>
             根据 data 或者 key 拿到 Tree 组件中的 node,使用此方法必须设置
