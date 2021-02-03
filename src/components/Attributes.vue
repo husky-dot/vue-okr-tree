@@ -105,6 +105,13 @@
           <td>—</td>
         </tr>
         <tr>
+          <td>node-btn-content</td>
+          <td>展开的按钮内容渲染 Function</td>
+          <td>Function(h, node)</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
           <td>props</td>
           <td>配置选项，具体看下表</td>
           <td>object</td>

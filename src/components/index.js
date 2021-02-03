@@ -5,6 +5,7 @@ export { default as Base04 } from "./Base04.vue";
 export { default as Base05 } from "./Base05.vue";
 export { default as Base06 } from "./Base06.vue";
 export { default as Base061 } from "./Base061.vue";
+export { default as Base062 } from "./Base062.vue";
 export { default as Base041 } from "./Base041.vue";
 export { default as Base07 } from "./Base07.vue";
 export { default as Base08 } from "./Base08.vue";

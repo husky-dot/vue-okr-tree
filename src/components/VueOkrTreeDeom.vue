@@ -16,6 +16,8 @@
     <Base05 />
     <!-- 自定义节点内容 -->
     <Base06 />
+    <!-- 展开按钮自定义内容 -->
+    <Base062 />
     <!-- 节点动画 -->
     <Base061 />
     <!-- OKR 模式 -->
@@ -54,6 +56,7 @@ import {
   Base05,
   Base06,
   Base061,
+  Base062,
   Base07,
   Base08,
   Attributes,
@@ -75,6 +78,7 @@ export default {
     Base05,
     Base06,
     Base061,
+    Base062,
     Base07,
     Base08,
     Attributes,

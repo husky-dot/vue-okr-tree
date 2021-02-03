@@ -19,6 +19,7 @@
         :label-width="labelWidth"
         :label-height="labelHeight"
         :renderContent="renderContent"
+        :nodeBtnContent="nodeBtnContent"
         :selected-key="selectedKey"
         :default-expand-all="defaultExpandAll"
         :node-key="nodeKey"
@@ -73,6 +74,8 @@ export default {
     },
     // 树节点的内容区的渲染 Function
     renderContent: Function,
+    // 展开节点的内容渲染 Function
+    nodeBtnContent: Function,
     // 树节点区域的宽度
     labelWidth: [String, Number],
     // 树节点区域的高度
@@ -341,6 +344,7 @@ export default {
   cursor: pointer;
   transition: all 0.35s ease;
 }
+
 .vertical .org-chart-node-label .org-chart-node-btn:hover {
   transform: scale(1.15);
   cursor: pointer;

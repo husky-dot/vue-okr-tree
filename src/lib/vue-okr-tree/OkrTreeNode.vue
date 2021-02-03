@@ -24,6 +24,7 @@
           :label-width="labelWidth"
           :label-height="labelHeight"
           :renderContent="renderContent"
+          :nodeBtnContent="nodeBtnContent"
           :selected-key="selectedKey"
           :node-key="nodeKey"
           :key="getNodeKey(child)"
@@ -37,8 +38,12 @@
         v-if="showNodeBtn && leftChildNodes.length > 0"
         class="org-chart-node-left-btn"
         :class="{ expanded: node.leftExpanded }"
-        @click="handleBtnClick('left')"
-      ></div>
+        @click="handleBtnClick('left')">
+        <node-btn-content :node="node">
+          <slot>
+          </slot>
+        </node-btn-content>
+      </div>
       <div
         class="org-chart-node-label-inner"
         @click="handleNodeClick"
@@ -55,8 +60,13 @@
         v-if="showNodeBtn && !isLeftChildNode"
         class="org-chart-node-btn"
         :class="{ expanded: node.expanded }"
-        @click="handleBtnClick('right')"
-      ></div>
+        @click="handleBtnClick('right')">
+        <node-btn-content :node="node">
+          <slot>
+            <!-- <div class="org-chart-node-btn-text">10</div> -->
+          </slot>
+        </node-btn-content>
+      </div>
     </div>
     <transition :duration="animateDuration" :name="animateName">
       <div
@@ -71,6 +81,7 @@
           :label-width="labelWidth"
           :label-height="labelHeight"
           :renderContent="renderContent"
+          :nodeBtnContent="nodeBtnContent"
           :selected-key="selectedKey"
           :node-key="nodeKey"
           :key="getNodeKey(child)"
@@ -109,6 +120,8 @@ export default {
     },
     // 树节点的内容区的渲染 Function
     renderContent: Function,
+    // 展开节点的内容渲染 Function
+    nodeBtnContent: Function,
     // 树节点区域的宽度
     labelWidth: [String, Number],
     // 树节点区域的高度
@@ -131,6 +144,24 @@ export default {
           return parent._props.renderContent(h, this.node);
         } else {
           return this.$scopedSlots.default(this.node);
+        }
+      }
+    },
+    // 渲染展开节点的样式
+    NodeBtnContent: {
+      props: {
+        node: {
+          required: true
+        }
+      },
+      render(h) {
+        const parent = this.$parent;
+        if (parent._props.nodeBtnContent) {
+          return parent._props.nodeBtnContent(h, this.node);
+        } else {
+          if (this.$scopedSlots.default) {
+            return this.$scopedSlots.default(this.node);
+          }
         }
       }
     }
