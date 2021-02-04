@@ -24,6 +24,8 @@
     <Base07 />
     <!-- OKR 模式之自定义内容 -->
     <Base08 />
+    <!-- OKR 模式之自定义内容 -->
+    <Base081 />
     <!-- Filter-->
     <BaseFilter />
     <!-- BaseFilterOrk-->
@@ -59,6 +61,7 @@ import {
   Base062,
   Base07,
   Base08,
+  Base081,
   Attributes,
   Props,
   Events,
@@ -81,6 +84,7 @@ export default {
     Base062,
     Base07,
     Base08,
+    Base081,
     Attributes,
     Props,
     Events,

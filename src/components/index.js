@@ -9,6 +9,7 @@ export { default as Base062 } from "./Base062.vue";
 export { default as Base041 } from "./Base041.vue";
 export { default as Base07 } from "./Base07.vue";
 export { default as Base08 } from "./Base08.vue";
+export { default as Base081 } from "./Base081.vue";
 export { default as Attributes } from "./Attributes.vue";
 export { default as Props } from "./Props.vue";
 export { default as Events } from "./Events.vue";

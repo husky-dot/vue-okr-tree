@@ -8,6 +8,9 @@
    * 增加 updateKeyChildren 方法：vue-okr-tree@1.0.7
  * 更新时间 2021/02/03
    * 增加 node-btn-content 属性，对展开圆圈内容自定义处理  vue-okr-tree@1.0.8
+ * 更新时间 2021/02/04
+    * 增加 showNodeNum  属性显示子节点数   vue-okr-tree@1.0.9
+
 ## 文档和事例
 
 地址：http://www.longstudy.club/vue-okr-tree-doc/index.html
@@ -61,6 +64,7 @@ import 'vue-okr-tree/dist/vue-okr-tree.css'
 | label-class-name | 节点 className 的回调方法，也可以使用字符串为所有的节点设置一个固定的 className | Function(node)/String | — | — 
 | current-lable-class-name | 当前选中节点的样式 | Function(node)/String | — | — 
 | show-collapsable | 节点是否可被展开 | Boolean | — | false
+| show-node-num | 显示子节点数 | Boolean | — | false
 | default-expand-all | 是否默认展开所有节点，该参数只有在 show-collapsable 为 true 时有效 | Boolean | — | false
 | render-content | 树节点的内容区的渲染 Function |  Function(h, node) | —  | —
 | node-btn-content | 展开的按钮内容渲染 Function |  Function(h, node) | —  | —

@@ -30,6 +30,7 @@
           :node-key="nodeKey"
           :key="getNodeKey(child)"
           :props="props"
+          :show-node-num="showNodeNum"
           is-left-child-node
         ></OkrTreeNode>
       </div>
@@ -46,7 +47,12 @@
         class="org-chart-node-left-btn"
         :class="{ expanded: node.leftExpanded }"
         @click="handleBtnClick('left')">
-        <node-btn-content :node="node">
+        <template v-if="showNodeNum" >
+          <span v-if="!node.leftExpanded" class="org-chart-node-btn-text">
+            {{ (node.level === 1 && leftChildNodes.length > 0) ? leftChildNodes.length : node.childNodes.length }}
+          </span>
+        </template>
+        <node-btn-content v-else :node="node">
           <slot>
           </slot>
         </node-btn-content>
@@ -68,7 +74,12 @@
         class="org-chart-node-btn"
         :class="{ expanded: node.expanded }"
         @click="handleBtnClick('right')">
-        <node-btn-content :node="node">
+        <template v-if="showNodeNum">
+          <span v-if="!node.expanded " class="org-chart-node-btn-text">
+            {{ node.childNodes.length }}
+          </span>
+        </template>
+        <node-btn-content v-else :node="node">
           <slot>
             <!-- <div class="org-chart-node-btn-text">10</div> -->
           </slot>
@@ -92,6 +103,7 @@
           :selected-key="selectedKey"
           :node-key="nodeKey"
           :key="getNodeKey(child)"
+          :show-node-num='showNodeNum'
           :props="props"
         ></OkrTreeNode>
       </div>
@@ -129,6 +141,8 @@ export default {
     renderContent: Function,
     // 展开节点的内容渲染 Function
     nodeBtnContent: Function,
+    // 显示节点数
+    showNodeNum: Boolean,
     // 树节点区域的宽度
     labelWidth: [String, Number],
     // 树节点区域的高度

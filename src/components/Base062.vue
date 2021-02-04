@@ -155,7 +155,7 @@ export default {
   methods: {
     renderContent(h, node) {
       return (
-        <div class="org-chart-node-btn-text">{node.childNodes.length || 0}</div>
+        <div class="org-chart-node-btn-text">智</div>
       );
     }
   }

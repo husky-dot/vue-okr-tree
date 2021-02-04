@@ -23,6 +23,7 @@
         :selected-key="selectedKey"
         :default-expand-all="defaultExpandAll"
         :node-key="nodeKey"
+        :show-node-num="showNodeNum"
         :key="getNodeKey(child)"
         :props="props"
       ></OkrTreeNode>
@@ -76,6 +77,8 @@ export default {
     renderContent: Function,
     // 展开节点的内容渲染 Function
     nodeBtnContent: Function,
+    // 显示节点数
+    showNodeNum: Boolean,
     // 树节点区域的宽度
     labelWidth: [String, Number],
     // 树节点区域的高度
@@ -658,5 +661,22 @@ export default {
   right: 100%;
   height: 50%;
   width: 20px;
+}
+
+
+.org-chart-node-children .org-chart-node-btn-text {
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #909090;
+  z-index: 2;
 }
 </style>

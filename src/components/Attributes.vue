@@ -98,6 +98,13 @@
           <td>false</td>
         </tr>
         <tr>
+          <td>show-node-num</td>
+          <td>显示子节点数</td>
+          <td>Boolean</td>
+          <td>—</td>
+          <td>false</td>
+        </tr>
+        <tr>
           <td>render-content</td>
           <td>树节点的内容区的渲染 Function</td>
           <td>Function(h, node)</td>

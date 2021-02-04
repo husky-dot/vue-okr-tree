@@ -48,50 +48,50 @@ export default {
           // }]
         }
       ],
-      // testData: [
-      //   {
-      //     id: 1,
-      //     label: "xxx科技有有限公司",
-      //     children: [
-      //       {
-      //         id: 2,
-      //         label: "产品研发部",
-      //         children: [
-      //           {
-      //             id: 3,
-      //             label: "研发-前端"
-      //           },
-      //           {
-      //             id: 4,
-      //             label: "研发-后端"
-      //           },
-      //           {
-      //             id: 5,
-      //             label: "UI 设计"
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         id: 6,
-      //         label: "销售部",
-      //         children: [
-      //           {
-      //             id: 7,
-      //             label: "销售一部"
-      //           },
-      //           {
-      //             id: 8,
-      //             label: "销售二部"
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         id: 9,
-      //         label: "财务部"
-      //       }
-      //     ]
-      //   }
-      // ],
+      testData: [
+        {
+          id: 1,
+          label: "xxx科技有有限公司",
+          children: [
+            {
+              id: 2,
+              label: "产品研发部",
+              children: [
+                {
+                  id: 3,
+                  label: "研发-前端"
+                },
+                {
+                  id: 4,
+                  label: "研发-后端"
+                },
+                {
+                  id: 5,
+                  label: "UI 设计"
+                }
+              ]
+            },
+            {
+              id: 6,
+              label: "销售部",
+              children: [
+                {
+                  id: 7,
+                  label: "销售一部"
+                },
+                {
+                  id: 8,
+                  label: "销售二部"
+                }
+              ]
+            },
+            {
+              id: 9,
+              label: "财务部"
+            }
+          ]
+        }
+      ],
       testLeftData: [
         {
           id: 1,
