@@ -130,7 +130,7 @@ export default class Node {
       child = new Node(child, isLeftChild);
     }
     child.level = this.level + 1;
-    if (typeof index === "undefined" || index < 0) {
+    if (index === undefined || index === null || index < 0) {
       this.childNodes.push(child);
     } else {
       this.childNodes.splice(index, 0, child);
