@@ -1,18 +1,18 @@
-import { markNodeData, NODE_KEY } from "./util";
-import objectAssign from "./merge";
+import { markNodeData, NODE_KEY } from './util';
+import objectAssign from './merge';
 
-const getPropertyFromData = function(node, prop) {
+const getPropertyFromData = function (node, prop) {
   const props = node.store.props;
   const data = node.data || {};
   const config = props[prop];
 
-  if (typeof config === "function") {
+  if (typeof config === 'function') {
     return config(data, node);
-  } else if (typeof config === "string") {
+  } else if (typeof config === 'string') {
     return data[config];
-  } else if (typeof config === "undefined") {
+  } else if (typeof config === 'undefined') {
     const dataProp = data[prop];
-    return dataProp === undefined ? "" : dataProp;
+    return dataProp === undefined ? '' : dataProp;
   }
 };
 
@@ -43,7 +43,7 @@ export default class Node {
 
     const store = this.store;
     if (!store) {
-      throw new Error("[Node]store is required!");
+      throw new Error('[Node]store is required!');
     }
     store.registerNode(this);
     if (this.data) {
@@ -91,7 +91,7 @@ export default class Node {
     if (this.level === 0 && this.data instanceof Array) {
       children = this.data;
     } else {
-      children = getPropertyFromData(this, "children") || [];
+      children = getPropertyFromData(this, 'children') || [];
     }
     for (let i = 0, j = children.length; i < j; i++) {
       this.insertChild({ data: children[i] }, null, null, isLeftChild);
@@ -103,20 +103,20 @@ export default class Node {
     return null;
   }
   get label() {
-    return getPropertyFromData(this, "label");
+    return getPropertyFromData(this, 'label');
   }
   // 是否是 OKR 飞书模式
   hasLeftChild() {
     const store = this.store;
-    return store.onlyBothTree && store.direction === "horizontal";
+    return store.onlyBothTree && store.direction === 'horizontal';
   }
   insertChild(child, index, batch, isLeftChild) {
-    if (!child) throw new Error("insertChild error: child is required.");
+    if (!child) throw new Error('insertChild error: child is required.');
     if (!(child instanceof Node)) {
       if (!batch) {
         const children = this.getChildren(true);
         if (children.indexOf(child.data) === -1) {
-          if (typeof index === "undefined" || index < 0) {
+          if (index === undefined || index === null || index < 0) {
             children.push(child.data);
           } else {
             children.splice(index, 0, child.data);
@@ -125,7 +125,7 @@ export default class Node {
       }
       objectAssign(child, {
         parent: this,
-        store: this.store
+        store: this.store,
       });
       child = new Node(child, isLeftChild);
     }
@@ -144,9 +144,9 @@ export default class Node {
     if (!data) return null;
 
     const props = this.store.props;
-    let children = "children";
+    let children = 'children';
     if (props) {
-      children = props.children || "children";
+      children = props.children || 'children';
     }
 
     if (data[children] === undefined) {
@@ -163,7 +163,7 @@ export default class Node {
     if (
       this.store.lazy === true &&
       this.loaded !== true &&
-      typeof this.isLeafByUser !== "undefined"
+      typeof this.isLeafByUser !== 'undefined'
     ) {
       this.isLeaf = this.isLeafByUser;
       return;
@@ -182,7 +182,7 @@ export default class Node {
     if (
       this.store.lazy === true &&
       this.loaded !== true &&
-      typeof this.isLeafByUser !== "undefined"
+      typeof this.isLeafByUser !== 'undefined'
     ) {
       this.isLeaf = this.isLeafByUser;
       return;
