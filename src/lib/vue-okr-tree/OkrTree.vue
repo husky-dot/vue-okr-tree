@@ -236,31 +236,18 @@ export default {
   padding: 0;
 }
 .org-chart-container {
-  display: flex;
+  display: block;
   width: 100%;
   text-align: center;
-  overflow: auto;
-  flex-wrap: nowrap;
-  align-content: flex-start;
 }
-.org-chart-node-children{
-  overflow: auto;
-  display: flex;
-  flex-wrap: nowrap;
-  align-content: flex-start;
-}
+
 .vertical .org-chart-node-children {
   position: relative;
   padding-top: 20px;
   transition: all 0.5s;
-  display: flex;
-  flex-wrap: nowrap;
-  align-content: flex-start;
-  overflow: auto;
 }
 .vertical .org-chart-node {
-  /* float: left; */
-  display: inline-block;
+  float: left;
   text-align: center;
   list-style-type: none;
   position: relative;
