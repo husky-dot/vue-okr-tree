@@ -31,7 +31,6 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
 import OkrTreeNode from "./OkrTreeNode.vue";
 import TreeStore from "./model/tree-store.js";
 import { getNodeKey } from "./model/util";
@@ -39,11 +38,6 @@ export default {
   name: "OkrTree",
   components: {
     OkrTreeNode
-  },
-  provide() {
-    return {
-      okrEventBus: this.okrEventBus
-    };
   },
   props: {
     data: {
@@ -135,7 +129,6 @@ export default {
   },
   data() {
     return {
-      okrEventBus: new Vue(),
       store: null,
       root: null
     };

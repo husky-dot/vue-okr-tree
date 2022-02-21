@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="tree-demo-title-h3">节点自定义内容</h3>
+    <h3 class="tree-demo-title-h3">自定义节点结构</h3>
     <p>可自行设置节点内容</p>
     <BaseCard>
       <template v-slot:header>
@@ -27,6 +27,7 @@
   </div>
 </template>
 <script>
+import CustomRenderContentCard from './CustomRenderContentCard.vue';
 import mixins from "./mixins";
 export default {
   mixins: [mixins],
@@ -137,12 +138,7 @@ export default {
   },
   methods: {
     renderContent(h, node) {
-      return (
-        <div class={`diy-wrapper ${node.isCurrent ? "current-select" : ""}`}>
-          <div class="diy-con-name">{node.data.label}</div>
-          <div class="diy-con-content">{node.data.content}</div>
-        </div>
-      );
+      return <CustomRenderContentCard data={node.data}></CustomRenderContentCard>
     }
   }
 };

@@ -12,29 +12,27 @@
       'only-both-tree-node': node.level === 1 && tree.store.onlyBothTree
     }"
   >
-    <transition :duration="animateDuration" :name="animateName">
-      <div
-        class="org-chart-node-left-children"
-        v-if="showLeftChildNode"
-        v-show="node.leftExpanded"
-      >
-        <OkrTreeNode
-          v-for="child in leftChildNodes"
-          :show-collapsable="showCollapsable"
-          :node="child"
-          :label-width="labelWidth"
-          :label-height="labelHeight"
-          :renderContent="renderContent"
-          :nodeBtnContent="nodeBtnContent"
-          :selected-key="selectedKey"
-          :node-key="nodeKey"
-          :key="getNodeKey(child)"
-          :props="props"
-          :show-node-num="showNodeNum"
-          is-left-child-node
-        ></OkrTreeNode>
-      </div>
-    </transition>
+    <div
+      class="org-chart-node-left-children"
+      v-if="showLeftChildNode"
+      v-show="node.leftExpanded"
+    >
+      <OkrTreeNode
+        v-for="child in leftChildNodes"
+        :show-collapsable="showCollapsable"
+        :node="child"
+        :label-width="labelWidth"
+        :label-height="labelHeight"
+        :renderContent="renderContent"
+        :nodeBtnContent="nodeBtnContent"
+        :selected-key="selectedKey"
+        :node-key="nodeKey"
+        :key="getNodeKey(child)"
+        :props="props"
+        :show-node-num="showNodeNum"
+        is-left-child-node
+      ></OkrTreeNode>
+    </div>
     <div class="org-chart-node-label"
       :class="{
         'is-root-label': node.level === 1,
@@ -86,40 +84,42 @@
         </node-btn-content>
       </div>
     </div>
-    <transition :duration="animateDuration" :name="animateName">
-      <div
-        class="org-chart-node-children"
-        v-if="!isLeftChildNode && node.childNodes && node.childNodes.length > 0"
-        v-show="node.expanded"
-      >
-        <OkrTreeNode
-          v-for="child in node.childNodes"
-          :show-collapsable="showCollapsable"
-          :node="child"
-          :label-width="labelWidth"
-          :label-height="labelHeight"
-          :renderContent="renderContent"
-          :nodeBtnContent="nodeBtnContent"
-          :selected-key="selectedKey"
-          :node-key="nodeKey"
-          :key="getNodeKey(child)"
-          :show-node-num='showNodeNum'
-          :props="props"
-        ></OkrTreeNode>
-      </div>
-    </transition>
+    <div
+      class="org-chart-node-children"
+      v-if="!isLeftChildNode && node.childNodes && node.childNodes.length > 0"
+      v-show="node.expanded"
+    >
+      <OkrTreeNode
+        v-for="child in node.childNodes"
+        :show-collapsable="showCollapsable"
+        :node="child"
+        :label-width="labelWidth"
+        :label-height="labelHeight"
+        :renderContent="renderContent"
+        :nodeBtnContent="nodeBtnContent"
+        :selected-key="selectedKey"
+        :node-key="nodeKey"
+        :key="getNodeKey(child)"
+        :show-node-num='showNodeNum'
+        :props="props"
+      ></OkrTreeNode>
+    </div>
   </div>
 </template>
 <script>
 import { getNodeKey } from "./model/util";
 export default {
   name: "OkrTreeNode",
-  inject: ["okrEventBus"],
   props: {
     props: {},
     node: {
       default() {
-        return {};
+        return {
+          level: 0,
+          childNodes: [],
+          leftExpanded: false,
+          expanded:false
+        };
       }
     },
     root: {
@@ -161,10 +161,10 @@ export default {
       },
       render(h) {
         const parent = this.$parent;
-        if (parent._props.renderContent) {
-          return parent._props.renderContent(h, this.node);
+        if (parent.$props.renderContent) {
+          return parent.$props.renderContent(h, this.node);
         } else {
-          return this.$scopedSlots.default(this.node);
+          return this.$slots.default(this.node);
         }
       }
     },
@@ -177,11 +177,11 @@ export default {
       },
       render(h) {
         const parent = this.$parent;
-        if (parent._props.nodeBtnContent) {
-          return parent._props.nodeBtnContent(h, this.node);
+        if (parent.$props.nodeBtnContent) {
+          return parent.$props.nodeBtnContent(h, this.node);
         } else {
-          if (this.$scopedSlots.default) {
-            return this.$scopedSlots.default(this.node);
+          if (this.$slots.default) {
+            return this.$slots.default(this.node);
           }
         }
       }
@@ -200,7 +200,7 @@ export default {
       }
     },
     leftChildNodes() {
-      if (this.tree.store.onlyBothTree) {
+      if (this.tree && this.tree.store.onlyBothTree) {
         if (this.isLeftChildNode) {
           return this.node.childNodes;
         } else {
@@ -210,13 +210,13 @@ export default {
       return [];
     },
     animateName() {
-      if (this.tree.store.animate) {
+      if (this.tree && this.tree.store.animate) {
         return this.tree.store.animateName;
       }
       return "";
     },
     animateDuration() {
-      if (this.tree.store.animate) {
+      if (this.tree && this.tree.store.animate) {
         return this.tree.store.animateDuration;
       }
       return 0;
@@ -225,7 +225,7 @@ export default {
     showNodeBtn() {
       if (this.isLeftChildNode) {
         return (
-          (this.tree.store.direction === "horizontal" &&
+          (this.tree && this.tree.store.direction === "horizontal" &&
           this.showCollapsable &&
           this.leftChildNodes.length > 0) || this.level === 1
         );
@@ -238,7 +238,7 @@ export default {
     },
     showNodeLeftBtn() {
       return (
-        (this.tree.store.direction === "horizontal" &&
+        (this.tree && this.tree.store.direction === "horizontal" &&
         this.showCollapsable &&
         this.leftChildNodes.length > 0) 
       )
@@ -259,23 +259,25 @@ export default {
     },
     computeLabelClass() {
       let clsArr = [];
-      const store = this.tree.store;
-      if (store.labelClassName) {
-        if (typeof store.labelClassName === "function") {
-          clsArr.push(store.labelClassName(this.node));
-        } else {
-          clsArr.push(store.labelClassName);
+      if (this.tree) {
+        const store = this.tree.store;
+        if (store.labelClassName) {
+          if (typeof store.labelClassName === "function") {
+            clsArr.push(store.labelClassName(this.node));
+          } else {
+            clsArr.push(store.labelClassName);
+          }
         }
-      }
-      if (store.currentLableClassName && this.node.isCurrent) {
-        if (typeof store.currentLableClassName === "function") {
-          clsArr.push(store.currentLableClassName(this.node));
-        } else {
-          clsArr.push(store.currentLableClassName);
+        if (store.currentLableClassName && this.node.isCurrent) {
+          if (typeof store.currentLableClassName === "function") {
+            clsArr.push(store.currentLableClassName(this.node));
+          } else {
+            clsArr.push(store.currentLableClassName);
+          }
         }
-      }
-      if (this.node.isCurrent) {
-        clsArr.push("is-current");
+        if (this.node.isCurrent) {
+          clsArr.push("is-current");
+        }
       }
       return clsArr;
     },
@@ -292,7 +294,7 @@ export default {
     // 是否显示左子数
     showLeftChildNode() {
       return (
-        this.tree.onlyBothTree &&
+        this.tree && this.tree.onlyBothTree &&
         this.tree.store.direction === "horizontal" &&
         this.leftChildNodes &&
         this.leftChildNodes.length > 0
@@ -338,26 +340,28 @@ export default {
     },
     handleBtnClick(isLeft) {
       isLeft = isLeft === "left";
-      const store = this.tree.store;
-      // 表示是OKR飞书模式
-      if (store.onlyBothTree) {
-        if (isLeft) {
-          if (this.node.leftExpanded) {
-            this.node.leftExpanded = false;
-            this.tree.$emit("node-collapse", this.node.data, this.node, this);
-          } else {
-            this.node.leftExpanded = true;
-            this.tree.$emit("node-expand", this.node.data, this.node, this);
+      if (this.tree) {
+        const store = this.tree.store;
+        // 表示是OKR飞书模式
+        if (store.onlyBothTree) {
+          if (isLeft) {
+            if (this.node.leftExpanded) {
+              this.node.leftExpanded = false;
+              this.tree.$emit("node-collapse", this.node.data, this.node, this);
+            } else {
+              this.node.leftExpanded = true;
+              this.tree.$emit("node-expand", this.node.data, this.node, this);
+            }
+            return;
           }
-          return;
         }
-      }
-      if (this.node.expanded) {
-        this.node.collapse();
-        this.tree.$emit("node-collapse", this.node.data, this.node, this);
-      } else {
-        this.node.expand();
-        this.tree.$emit("node-expand", this.node.data, this.node, this);
+        if (this.node.expanded) {
+          this.node.collapse();
+          this.tree.$emit("node-collapse", this.node.data, this.node, this);
+        } else {
+          this.node.expand();
+          this.tree.$emit("node-expand", this.node.data, this.node, this);
+        }
       }
     },
     handleContextMenu(event) {

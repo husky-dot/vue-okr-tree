@@ -42,16 +42,6 @@ export default {
         {
           id: 1,
           label: "xxx科技有有限公司",
-          // children: [{
-          //   id: 3,
-          //   label: "产品研发部",
-          // }]
-        }
-      ],
-      testData: [
-        {
-          id: 1,
-          label: "xxx科技有有限公司",
           children: [
             {
               id: 2,

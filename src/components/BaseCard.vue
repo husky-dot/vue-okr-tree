@@ -11,7 +11,7 @@
       <div v-if="$slots.description" class="description">
         <slot name="description" />
       </div>
-      <slot></slot>
+      <slot ref="slotDefault"></slot>
     </div>
     <div class="base-card-control" @click="handleClick">
       {{ show ? "隐藏代码" : "显示代码" }}
@@ -30,7 +30,7 @@ export default {
     handleClick() {
       this.show = !this.show;
       if (this.show) {
-        const { height } = this.$slots.default[0].elm.getBoundingClientRect();
+        const { height } = this.$refs.meta.getBoundingClientRect();
         this.metaHeight = height + 80;
       } else {
         this.metaHeight = 0;

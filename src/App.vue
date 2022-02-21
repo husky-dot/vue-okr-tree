@@ -1,18 +1,16 @@
 <template>
   <div id="app">
-    <VueOkrTreeDeom />
+    <VueOkrTreeDemo></VueOkrTreeDemo>
   </div>
 </template>
-
 <script>
-import VueOkrTreeDeom from "./components/VueOkrTreeDeom.vue";
+import VueOkrTreeDemo from "./components/VueOkrTreeDemo.vue";
 
 export default {
   name: "app",
   components: {
-    VueOkrTreeDeom
-  }
-};
+    VueOkrTreeDemo
+  },
+  setup() {},
+}
 </script>
-
-<style></style>

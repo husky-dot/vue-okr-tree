@@ -1,27 +1,16 @@
+## 使用前阅读
+
+* 该库fork自qq449245884/vue-okr-tree vue2.x版本
+* 因不想在提PR上浪费时间，所以直接fork修改并发布vue3.x版本
+
 ## 更新日志
 
-
- * 更新时间 2020/12/02 
-   * 修复异步修改data不渲染问题 对应版本：vue-okr-tree@1.0.5
- * 更新时间 2020/12/05
-   * 修改部分展示 bug 对应版本：vue-okr-tree@1.0.6
- * 更新时间 2021/01/13
-   * 增加 updateKeyChildren 方法：vue-okr-tree@1.0.7
- * 更新时间 2021/02/03
-   * 增加 node-btn-content 属性，对展开圆圈内容自定义处理  vue-okr-tree@1.0.8
- * 更新时间 2021/02/04
-    * 增加 showNodeNum  属性显示子节点数   vue-okr-tree@1.0.9
- * 更新时间 2021/09/07
-   * 修复节点倒叙显示问题 对应版本：vue-okr-tree@1.0.10
-
-## 文档和事例
-
-地址：http://www.longstudy.club/vue-okr-tree-doc/index.html
-
-
+ * 更新时间 2022/02/21 
+   * 修复```render-content```和```nodeBtnContent```在vue3.x使用问题
+ 
 ## vue-okr-tree
 
-基于 Vue 2的组织架构树组件
+基于 Vue 3的组织架构树组件
 
 ## Install
 
@@ -36,22 +25,11 @@ yarn add vue-okr-tree
 
 ``` js
 
-import {VueOkrTree} from 'vue-okr-tree';
-import 'vue-okr-tree/dist/vue-okr-tree.css'
+import {VueOkrTree} from 'vue-okr-tree-vue3';
+import 'vue-okr-tree-vue3/dist/vue-okr-tree.css'
 
 // ...
 ```
-
-### CDN
-
-``` html
-# css
-<link href="http://qjge81f6q.hd-bkt.clouddn.com/vue-okr-tree.css">
-
-# js
-<script src="http://qjge81f6q.hd-bkt.clouddn.com/vue-okr-tree.umd.min.js"></script>
-```
-
 ## API
 
 #### Attributes
@@ -111,19 +89,5 @@ append   |  为 Tree 中的一个节点追加一个子节点 | 		(data, parentNo
 insertBefore   |  为 Tree 的一个节点的前面增加一个节点 | 	(data, refNode) 接收两个参数，1. 要增加的节点的 data 2. 要增加的节点的后一个节点的 data、key 或者 node
 insertAfter   |  为 Tree 的一个节点的后面增加一个节点 | 	(data, refNode) 接收两个参数，1. 要增加的节点的 data 2. 要增加的节点的前一个节点的 data、key 或者 node
 
-
-
-
-## 浏览器支持情况
-
-Modern browsers and Internet Explorer 10+.
-
 ## License
 [MIT](http://opensource.org/licenses/MIT)
-
-
-
-## 作品展示
-
-
-![](./src/assets/pro1.png)

@@ -3,45 +3,45 @@
     <h2 class="tree-demo-title">Tree 树形控件</h2>
     <p>用清晰的层级结构展示信息，可展开或折叠。</p>
     <!-- 基础用法 -->
-    <Base01 />
+    <!-- <Base01 /> -->
     <!-- 水平方向 -->
-    <Base02 />
+    <!-- <Base02 /> -->
     <!-- 节点展开 -->
-    <Base03 />
+    <!-- <Base03 /> -->
     <!-- 节点全部展开 -->
-    <Base04 />
+    <!-- <Base04 /> -->
     <!-- 通过 key 让节点展开 -->
-    <Base041 />
+    <!-- <Base041 /> -->
     <!-- 节点样式 -->
-    <Base05 />
+    <!-- <Base05 /> -->
     <!-- 自定义节点内容 -->
     <Base06 />
     <!-- 展开按钮自定义内容 -->
-    <Base062 />
+    <!-- <Base062 /> -->
     <!-- 节点动画 -->
-    <Base061 />
+    <!-- <Base061 /> -->
     <!-- OKR 模式 -->
-    <Base07 />
+    <!-- <Base07 /> -->
     <!-- OKR 模式之自定义内容 -->
-    <Base08 />
+    <!-- <Base08 /> -->
     <!-- OKR 模式之自定义内容 -->
-    <Base081 />
+    <!-- <Base081 /> -->
     <!-- Filter-->
-    <BaseFilter />
+    <!-- <BaseFilter /> -->
     <!-- BaseFilterOrk-->
-    <BaseFilterOrk />
+    <!-- <BaseFilterOrk /> -->
     <!-- BaseEvents-->
-    <BaseEvents />
+    <!-- <BaseEvents /> -->
     <!-- BaseEventsOkr-->
-    <BaseEventsOkr />
+    <!-- <BaseEventsOkr /> -->
     <!-- Attributes-->
-    <Attributes />
+    <!-- <Attributes /> -->
     <!-- Props-->
-    <Props />
+    <!-- <Props /> -->
     <!-- Events-->
-    <Events />
+    <!-- <Events /> -->
     <!-- Methods-->
-    <Methods />
+    <!-- <Methods /> -->
 
     <div class="top-wrapp" @click="goTop">
       <img :src="require('@/assets/top.png')" alt="" />
@@ -115,27 +115,27 @@ export default {
   color: #1f2f3d;
 }
 .vue-ork-tree-demo p,
-.vue-ork-tree-demo /deep/ p {
+.vue-ork-tree-demo :deep() p {
   font-size: 14px;
   line-height: 1.5em;
   color: #5e6d82;
   margin: 14px 0;
 }
 .vue-ork-tree-demo .tree-demo-title-h3,
-.vue-ork-tree-demo /deep/ .tree-demo-title-h3 {
+.vue-ork-tree-demo :deep() .tree-demo-title-h3 {
   font-size: 22px;
   color: #1f2f3d;
   margin: 55px 0 20px;
 }
-.vue-ork-tree-demo /deep/ .component-wrapper {
+.vue-ork-tree-demo :deep() .component-wrapper {
   overflow: auto;
   padding-left: 40px;
 }
-.vue-ork-tree-demo /deep/ table {
+.vue-ork-tree-demo :deep() table {
   width: 100%;
   font-size: 14px;
 }
-.vue-ork-tree-demo /deep/ table th {
+.vue-ork-tree-demo :deep() table th {
   white-space: nowrap;
   color: #909399;
   font-weight: 400;
@@ -144,14 +144,14 @@ export default {
   max-width: 250px;
   text-align: left;
 }
-.vue-ork-tree-demo /deep/ table td {
+.vue-ork-tree-demo :deep() table td {
   border-bottom: 1px solid #dcdfe6;
   padding: 15px;
   max-width: 250px;
   text-align: left;
 }
-.vue-ork-tree-demo /deep/ table td:first-child,
-.vue-ork-tree-demo /deep/ table th:first-child {
+.vue-ork-tree-demo :deep() table td:first-child,
+.vue-ork-tree-demo :deep() table th:first-child {
   padding-left: 10px;
 }
 .top-wrapp {
@@ -164,13 +164,13 @@ export default {
   width: 60px;
 }
 
-.vue-ork-tree-demo /deep/ .filter-wrapper {
+.vue-ork-tree-demo :deep() .filter-wrapper {
   position: relative;
   font-size: 14px;
   display: inline-block;
   width: 100%;
 }
-.vue-ork-tree-demo /deep/ .filter-wrapper input {
+.vue-ork-tree-demo :deep() .filter-wrapper input {
   -webkit-appearance: none;
   background-color: #fff;
   background-image: none;
@@ -188,10 +188,10 @@ export default {
   width: 100%;
   cursor: pointer;
 }
-.vue-ork-tree-demo /deep/ .btns-wrap {
+.vue-ork-tree-demo :deep() .btns-wrap {
   margin-top: 10px;
 }
-.vue-ork-tree-demo /deep/ .btns-wrap button {
+.vue-ork-tree-demo :deep() .btns-wrap button {
   display: inline-block;
   line-height: 1;
   white-space: nowrap;
@@ -217,7 +217,7 @@ export default {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-.vue-ork-tree-demo /deep/ .btns-wrap button:hover {
+.vue-ork-tree-demo :deep() .btns-wrap button:hover {
   background: #b3d8ff;
 }
 </style>
