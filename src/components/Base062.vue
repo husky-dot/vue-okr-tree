@@ -98,25 +98,25 @@ export default {
               content: '这是一个有活力的研发-前端'
             }, {
               label: '研发-后端',
-              ontent: '这是一个有活力的研发-后端'
+              content: '这是一个有活力的研发-后端'
             }, {
               label: 'UI 设计',
-              ontent: '这是一个有活力的UI 设计
+              content: '这是一个有活力的UI 设计
             }]
           }, {
             label: '销售部',
-            ontent: '这是一个有活力的销售部,
+            content: '这是一个有活力的销售部,
             children: [{
                 label: '销售一部',
-                ontent: '这是一个有活力的销售一部
+                content: '这是一个有活力的销售一部
               },{
                 label: '销售二部',
-                ontent: '这是一个有活力的销售二部
+                content: '这是一个有活力的销售二部
               }
             ]
           },{
             label: '财务部',
-            ontent: '这是一个有活力的财务部
+            content: '这是一个有活力的财务部
           }]
         }]
       }
