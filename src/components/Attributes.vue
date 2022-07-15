@@ -35,16 +35,6 @@
           <td>false</td>
         </tr>
         <tr>
-          <td>onlyBothTree</td>
-          <td>
-            子树在根节点左右两边展开，该模式只有在 <code>direction</code> 为
-            horizontal 有效，且必须提供 leftData 数据
-          </td>
-          <td>Boolean</td>
-          <td>—</td>
-          <td>false</td>
-        </tr>
-        <tr>
           <td>leftData</td>
           <td>展示左子数的数据，该属性于在 onlyBothTree 模式启用</td>
           <td>array</td>
