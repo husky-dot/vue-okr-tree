@@ -7,7 +7,7 @@
         vertical: direction === 'vertical',
         horizontal: direction === 'horizontal',
         'show-collapsable': showCollapsable,
-        'one-branch': data.length === 1
+        'one-branch': data.length === 1,
       }"
     >
       <OkrTreeNode
@@ -38,40 +38,40 @@ import { getNodeKey } from "./model/util";
 export default {
   name: "OkrTree",
   components: {
-    OkrTreeNode
+    OkrTreeNode,
   },
   provide() {
     return {
-      okrEventBus: this.okrEventBus
+      okrEventBus: this.okrEventBus,
     };
   },
   props: {
     data: {
       // 源数据
-      required: true
+      required: true,
     },
     leftData: {
       // 源数据
-      type: Array
+      type: Array,
     },
     // 方向
     direction: {
       type: String,
-      default: "vertical"
+      default: "vertical",
     },
     // 子节点是否可折叠
     showCollapsable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 飞书 OKR 模式
     onlyBothTree: {
       type: Boolean,
-      default: false
+      default: false,
     },
     orkstyle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 树节点的内容区的渲染 Function
     renderContent: Function,
@@ -92,14 +92,14 @@ export default {
     // 是否默认展开所有节点
     defaultExpandAll: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 当前选中的节点
     currentNodeKey: [String, Number],
     // 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的
     nodeKey: String,
     defaultExpandedKeys: {
-      type: Array
+      type: Array,
     },
     filterNodeMethod: Function,
     props: {
@@ -108,36 +108,36 @@ export default {
           leftChildren: "leftChildren",
           children: "children",
           label: "label",
-          disabled: "disabled"
+          disabled: "disabled",
         };
-      }
+      },
     },
     // 动画
     animate: {
       type: Boolean,
-      default: false
+      default: false,
     },
     animateName: {
       type: String,
-      default: "okr-zoom-in-center"
+      default: "okr-zoom-in-center",
     },
     animateDuration: {
       type: Number,
-      default: 200
-    }
+      default: 200,
+    },
   },
   computed: {
     ondeClass() {
       return {
-        findNode: null
+        findNode: null,
       };
-    }
+    },
   },
   data() {
     return {
       okrEventBus: new Vue(),
       store: null,
-      root: null
+      root: null,
     };
   },
   created() {
@@ -157,7 +157,7 @@ export default {
       onlyBothTree: this.onlyBothTree,
       direction: this.direction,
       animate: this.animate,
-      animateName: this.animateName
+      animateName: this.animateName,
     });
     this.root = this.store.root;
   },
@@ -165,10 +165,13 @@ export default {
     data(newVal) {
       this.store.setData(newVal);
     },
+    leftData(newVal) {
+      this.store.setLeftData(newVal);
+    },
     defaultExpandedKeys(newVal) {
       this.store.defaultExpandedKeys = newVal;
       this.store.setDefaultExpandedKeys(newVal);
-    }
+    },
   },
   methods: {
     filter(value) {
@@ -222,10 +225,11 @@ export default {
       this.store.insertAfter(data, refNode);
     },
     updateKeyChildren(key, data) {
-      if (!this.nodeKey) throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      if (!this.nodeKey)
+        throw new Error("[Tree] nodeKey is required in updateKeyChild");
       this.store.updateChildren(key, data);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -464,7 +468,8 @@ export default {
   border: 0 none;
 }
 /*将垂直连接器添加回最后的节点*/
-.horizontal .org-chart-node:not(.is-left-child-node):not(.is-not-child):last-child::before {
+.horizontal
+  .org-chart-node:not(.is-left-child-node):not(.is-not-child):last-child::before {
   border-bottom: 1px solid #ccc;
   border-radius: 0 0px 0 5px;
 }
@@ -663,10 +668,9 @@ export default {
   width: 20px;
 }
 
-
 .org-chart-node-children .org-chart-node-btn-text {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;

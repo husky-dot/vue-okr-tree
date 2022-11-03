@@ -3,14 +3,14 @@
     <h3 class="tree-demo-title-h3">OKR 展示模式</h3>
     <p>
       该模式的出现，是为了实现跟飞书OKR 展示的视图一样效果，所以在 Tree
-      的模式下，扩展成左右两棵子树
+      的模式下，扩展成左右两棵子树2
     </p>
     <BaseCard>
       <template v-slot:header>
         <div class="component-wrapper">
           <vue-okr-tree
             :data="testData"
-            :left-data="testData"
+            :left-data="testLeftData"
             only-both-tree
             direction="horizontal"
             show-collapsable
@@ -36,6 +36,36 @@
 import mixins from "./mixins";
 export default {
   mixins: [mixins],
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.testLeftData = [
+  //       {
+  //         id: 1,
+  //         label: "xxx科技有有限公司",
+  //         children: [
+  //           {
+  //             id: 12,
+  //             label: "(左)产品研发部2",
+  //             children: [
+  //               {
+  //                 id: 13,
+  //                 label: "(左)研发-前端2",
+  //               },
+  //               {
+  //                 id: 14,
+  //                 label: "(左)研发-后端2",
+  //               },
+  //               {
+  //                 id: 15,
+  //                 label: "(左)UI 设计2",
+  //               },
+  //             ],
+  //           },
+  //         ],
+  //       },
+  //     ];
+  //   }, 4000);
+  // },
   data() {
     return {
       testData: [
@@ -46,7 +76,7 @@ export default {
           //   id: 3,
           //   label: "产品研发部",
           // }]
-        }
+        },
       ],
       testData: [
         {
@@ -59,17 +89,17 @@ export default {
               children: [
                 {
                   id: 3,
-                  label: "研发-前端"
+                  label: "研发-前端",
                 },
                 {
                   id: 4,
-                  label: "研发-后端"
+                  label: "研发-后端",
                 },
                 {
                   id: 5,
-                  label: "UI 设计"
-                }
-              ]
+                  label: "UI 设计",
+                },
+              ],
             },
             {
               id: 6,
@@ -77,20 +107,20 @@ export default {
               children: [
                 {
                   id: 7,
-                  label: "销售一部"
+                  label: "销售一部",
                 },
                 {
                   id: 8,
-                  label: "销售二部"
-                }
-              ]
+                  label: "销售二部",
+                },
+              ],
             },
             {
               id: 9,
-              label: "财务部"
-            }
-          ]
-        }
+              label: "财务部",
+            },
+          ],
+        },
       ],
       testLeftData: [
         {
@@ -103,17 +133,17 @@ export default {
               children: [
                 {
                   id: 13,
-                  label: "(左)研发-前端"
+                  label: "(左)研发-前端",
                 },
                 {
                   id: 14,
-                  label: "(左)研发-后端"
+                  label: "(左)研发-后端",
                 },
                 {
                   id: 15,
-                  label: "(左)UI 设计"
-                }
-              ]
+                  label: "(左)UI 设计",
+                },
+              ],
             },
             {
               id: 16,
@@ -121,20 +151,20 @@ export default {
               children: [
                 {
                   id: 17,
-                  label: "(左)销售一部"
+                  label: "(左)销售一部",
                 },
                 {
                   id: 18,
-                  label: "(左)销售二部"
-                }
-              ]
+                  label: "(左)销售二部",
+                },
+              ],
             },
             {
               id: 19,
-              label: "(左)财务部"
-            }
-          ]
-        }
+              label: "(左)财务部",
+            },
+          ],
+        },
       ],
       content: `<vue-okr-tree
   :data="testData"
@@ -216,9 +246,9 @@ export default {
       }
     }
   }
-<\/script>`
+<\/script>`,
     };
-  }
+  },
 };
 </script>
 

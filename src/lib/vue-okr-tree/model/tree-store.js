@@ -14,28 +14,12 @@ export default class TreeStore {
     this.root = new Node(
       {
         data: this.data,
-        store: this
+        store: this,
       },
       false
     );
 
-    if (this.root.store.onlyBothTree) {
-      if (!this.leftData)
-        throw new Error("[Tree] leftData is required in onlyBothTree");
-      if (this.leftData) {
-        this.isLeftChilds = new Node(
-          {
-            data: this.leftData,
-            store: this
-          },
-          true
-        );
-        if (this.isLeftChilds) {
-          this.root.childNodes[0].leftChildNodes = this.isLeftChilds.childNodes[0].childNodes;
-          this.root.childNodes[0].leftExpanded = this.isLeftChilds.childNodes[0].leftExpanded;
-        }
-      }
-    }
+    this.setLeftData(this.leftData);
   }
   filter(value, childName = "childNodes") {
     this.filterRight(value, childName);
@@ -50,14 +34,14 @@ export default class TreeStore {
       } else {
         childNodes = node.childNodes;
       }
-      childNodes.forEach(child => {
+      childNodes.forEach((child) => {
         child.visible = filterNodeMethod.call(child, value, child.data, child);
         traverse(child, childName);
       });
 
       if (!node.visible && childNodes.length) {
         let allHidden = true;
-        allHidden = !childNodes.some(child => child.visible);
+        allHidden = !childNodes.some((child) => child.visible);
 
         if (node.root) {
           node.root.visible = allHidden === false;
@@ -83,7 +67,7 @@ export default class TreeStore {
   deregisterNode(node) {
     const key = this.key;
     if (!key || !node || !node.data) return;
-    node.childNodes.forEach(child => {
+    node.childNodes.forEach((child) => {
       this.deregisterNode(child);
     });
     delete this.nodesMap[node.key];
@@ -94,6 +78,25 @@ export default class TreeStore {
       this.root.setData(newVal);
     } else {
       this.root.updateChildren();
+    }
+  }
+  setLeftData(leftData) {
+    if (this.root.store.onlyBothTree) {
+      if (!leftData)
+        throw new Error("[Tree] leftData is required in onlyBothTree");
+      if (this.leftData) {
+        this.isLeftChilds = new Node(
+          {
+            data: leftData,
+            store: this,
+          },
+          true
+        );
+        if (this.isLeftChilds) {
+          this.root.childNodes[0].leftChildNodes = this.isLeftChilds.childNodes[0].childNodes;
+          this.root.childNodes[0].leftExpanded = this.isLeftChilds.childNodes[0].leftExpanded;
+        }
+      }
     }
   }
   updateChildren(key, data) {
@@ -117,7 +120,7 @@ export default class TreeStore {
   setDefaultExpandedKeys(keys) {
     keys = keys || [];
     this.defaultExpandedKeys = keys;
-    keys.forEach(key => {
+    keys.forEach((key) => {
       const node = this.getNode(key);
       if (node) node.expand(null, true);
     });
