@@ -79,6 +79,7 @@ export default class TreeStore {
     } else {
       this.root.updateChildren();
     }
+    this.setLeftData(this.leftData)
   }
   setLeftData(leftData) {
     if (this.root.store.onlyBothTree) {

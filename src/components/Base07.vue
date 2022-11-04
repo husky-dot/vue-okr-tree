@@ -38,7 +38,7 @@ export default {
   mixins: [mixins],
   // mounted() {
   //   setTimeout(() => {
-  //     this.testLeftData = [
+  //     this.testData = [
   //       {
   //         id: 1,
   //         label: "xxx科技有有限公司",
@@ -68,16 +68,6 @@ export default {
   // },
   data() {
     return {
-      testData: [
-        {
-          id: 1,
-          label: "xxx科技有有限公司",
-          // children: [{
-          //   id: 3,
-          //   label: "产品研发部",
-          // }]
-        },
-      ],
       testData: [
         {
           id: 1,
@@ -246,7 +236,7 @@ export default {
       }
     }
   }
-<\/script>`,
+<\/script>`
     };
   },
 };
