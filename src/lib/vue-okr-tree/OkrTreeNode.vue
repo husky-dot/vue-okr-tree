@@ -8,15 +8,20 @@
       'is-leaf': isLeaf,
       'is-current': node.isCurrent,
       'is-left-child-node': isLeftChildNode,
-      'is-not-child': node.level === 1 && node.childNodes.length <= 0 && leftChildNodes.length <= 0,
+      'is-not-child':
+        node.level === 1 &&
+        node.childNodes.length <= 0 &&
+        leftChildNodes.length <= 0,
       'only-both-tree-node': node.level === 1 && tree.store.onlyBothTree
     }"
   >
     <transition :duration="animateDuration" :name="animateName">
       <div
         class="org-chart-node-left-children"
+        :style="{
+          visibility: node.leftExpanded ? '' : 'hidden'
+        }"
         v-if="showLeftChildNode"
-        v-show="node.leftExpanded"
       >
         <OkrTreeNode
           v-for="child in leftChildNodes"
@@ -35,7 +40,8 @@
         ></OkrTreeNode>
       </div>
     </transition>
-    <div class="org-chart-node-label"
+    <div
+      class="org-chart-node-label"
       :class="{
         'is-root-label': node.level === 1,
         'is-not-right-child': node.level === 1 && node.childNodes.length <= 0,
@@ -46,15 +52,19 @@
         v-if="showNodeLeftBtn && leftChildNodes.length > 0"
         class="org-chart-node-left-btn"
         :class="{ expanded: node.leftExpanded }"
-        @click="handleBtnClick('left')">
-        <template v-if="showNodeNum" >
+        @click="handleBtnClick('left')"
+      >
+        <template v-if="showNodeNum">
           <span v-if="!node.leftExpanded" class="org-chart-node-btn-text">
-            {{ (node.level === 1 && leftChildNodes.length > 0) ? leftChildNodes.length : node.childNodes.length }}
+            {{
+              node.level === 1 && leftChildNodes.length > 0
+                ? leftChildNodes.length
+                : node.childNodes.length
+            }}
           </span>
         </template>
         <node-btn-content v-else :node="node">
-          <slot>
-          </slot>
+          <slot> </slot>
         </node-btn-content>
       </div>
       <div
@@ -73,9 +83,10 @@
         v-if="showNodeBtn && !isLeftChildNode"
         class="org-chart-node-btn"
         :class="{ expanded: node.expanded }"
-        @click="handleBtnClick('right')">
+        @click="handleBtnClick('right')"
+      >
         <template v-if="showNodeNum">
-          <span v-if="!node.expanded " class="org-chart-node-btn-text">
+          <span v-if="!node.expanded" class="org-chart-node-btn-text">
             {{ node.childNodes.length }}
           </span>
         </template>
@@ -89,8 +100,10 @@
     <transition :duration="animateDuration" :name="animateName">
       <div
         class="org-chart-node-children"
+        :style="{
+          visibility: node.expanded ? '' : 'hidden'
+        }"
         v-if="!isLeftChildNode && node.childNodes && node.childNodes.length > 0"
-        v-show="node.expanded"
       >
         <OkrTreeNode
           v-for="child in node.childNodes"
@@ -103,7 +116,7 @@
           :selected-key="selectedKey"
           :node-key="nodeKey"
           :key="getNodeKey(child)"
-          :show-node-num='showNodeNum'
+          :show-node-num="showNodeNum"
           :props="props"
         ></OkrTreeNode>
       </div>
@@ -188,15 +201,18 @@ export default {
     }
   },
   computed: {
-    isLeaf () {
+    isLeaf() {
       if (this.node.level === 1) {
-        if (this.leftChildNodes.length == 0 && this.node.childNodes.length == 0) {
-          return true
+        if (
+          this.leftChildNodes.length == 0 &&
+          this.node.childNodes.length == 0
+        ) {
+          return true;
         } else {
-          return false
+          return false;
         }
       } else {
-        return this.node.isLeaf
+        return this.node.isLeaf;
       }
     },
     leftChildNodes() {
@@ -226,22 +242,23 @@ export default {
       if (this.isLeftChildNode) {
         return (
           (this.tree.store.direction === "horizontal" &&
-          this.showCollapsable &&
-          this.leftChildNodes.length > 0) || this.level === 1
+            this.showCollapsable &&
+            this.leftChildNodes.length > 0) ||
+          this.level === 1
         );
       }
       return (
         this.showCollapsable &&
         this.node.childNodes &&
         this.node.childNodes.length > 0
-      )
+      );
     },
     showNodeLeftBtn() {
       return (
-        (this.tree.store.direction === "horizontal" &&
+        this.tree.store.direction === "horizontal" &&
         this.showCollapsable &&
-        this.leftChildNodes.length > 0) 
-      )
+        this.leftChildNodes.length > 0
+      );
     },
     // 节点的宽度
     computeLabelStyle() {
