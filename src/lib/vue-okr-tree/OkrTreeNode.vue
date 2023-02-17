@@ -1,7 +1,7 @@
 <template>
   <div
     class="org-chart-node"
-    @contextmenu="$event => this.handleContextMenu($event)"
+    @contextmenu="($event) => this.handleContextMenu($event)"
     v-if="node.visible"
     :class="{
       collapsed: !node.leftExpanded || !node.expanded,
@@ -12,14 +12,15 @@
         node.level === 1 &&
         node.childNodes.length <= 0 &&
         leftChildNodes.length <= 0,
-      'only-both-tree-node': node.level === 1 && tree.store.onlyBothTree
+      'only-both-tree-node': node.level === 1 && tree.store.onlyBothTree,
     }"
   >
     <transition :duration="animateDuration" :name="animateName">
       <div
         class="org-chart-node-left-children"
         :style="{
-          visibility: node.leftExpanded ? '' : 'hidden'
+          visibility: node.leftExpanded ? '' : 'hidden',
+          height: node.leftExpanded ? '' : '0',
         }"
         v-if="showLeftChildNode"
       >
@@ -45,7 +46,7 @@
       :class="{
         'is-root-label': node.level === 1,
         'is-not-right-child': node.level === 1 && node.childNodes.length <= 0,
-        'is-not-left-child': node.level === 1 && leftChildNodes.length <= 0
+        'is-not-left-child': node.level === 1 && leftChildNodes.length <= 0,
       }"
     >
       <div
@@ -101,7 +102,8 @@
       <div
         class="org-chart-node-children"
         :style="{
-          visibility: node.expanded ? '' : 'hidden'
+          visibility: node.expanded ? '' : 'hidden',
+          height: node.expanded ? '' : '0',
         }"
         v-if="!isLeftChildNode && node.childNodes && node.childNodes.length > 0"
       >
@@ -124,31 +126,31 @@
   </div>
 </template>
 <script>
-import { getNodeKey } from "./model/util";
+import { getNodeKey } from './model/util'
 export default {
-  name: "OkrTreeNode",
-  inject: ["okrEventBus"],
+  name: 'OkrTreeNode',
+  inject: ['okrEventBus'],
   props: {
     props: {},
     node: {
       default() {
-        return {};
-      }
+        return {}
+      },
     },
     root: {
       default() {
-        return {};
-      }
+        return {}
+      },
     },
     // 子节点是否可折叠
     showCollapsable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 判断是否是左子树的节点，样式需要改
     isLeftChildNode: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 树节点的内容区的渲染 Function
     renderContent: Function,
@@ -163,42 +165,42 @@ export default {
     // 用来控制选择节点的字段名
     selectedKey: String,
     // 每个树节点用来作为唯一标识的属性，整棵树应该是唯一的
-    nodeKey: String
+    nodeKey: String,
   },
   components: {
     NodeContent: {
       props: {
         node: {
-          required: true
-        }
+          required: true,
+        },
       },
       render(h) {
-        const parent = this.$parent;
+        const parent = this.$parent
         if (parent._props.renderContent) {
-          return parent._props.renderContent(h, this.node);
+          return parent._props.renderContent(h, this.node)
         } else {
-          return this.$scopedSlots.default(this.node);
+          return this.$scopedSlots.default(this.node)
         }
-      }
+      },
     },
     // 渲染展开节点的样式
     NodeBtnContent: {
       props: {
         node: {
-          required: true
-        }
+          required: true,
+        },
       },
       render(h) {
-        const parent = this.$parent;
+        const parent = this.$parent
         if (parent._props.nodeBtnContent) {
-          return parent._props.nodeBtnContent(h, this.node);
+          return parent._props.nodeBtnContent(h, this.node)
         } else {
           if (this.$scopedSlots.default) {
-            return this.$scopedSlots.default(this.node);
+            return this.$scopedSlots.default(this.node)
           }
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     isLeaf() {
@@ -207,192 +209,192 @@ export default {
           this.leftChildNodes.length == 0 &&
           this.node.childNodes.length == 0
         ) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       } else {
-        return this.node.isLeaf;
+        return this.node.isLeaf
       }
     },
     leftChildNodes() {
       if (this.tree.store.onlyBothTree) {
         if (this.isLeftChildNode) {
-          return this.node.childNodes;
+          return this.node.childNodes
         } else {
-          return this.node.leftChildNodes;
+          return this.node.leftChildNodes
         }
       }
-      return [];
+      return []
     },
     animateName() {
       if (this.tree.store.animate) {
-        return this.tree.store.animateName;
+        return this.tree.store.animateName
       }
-      return "";
+      return ''
     },
     animateDuration() {
       if (this.tree.store.animate) {
-        return this.tree.store.animateDuration;
+        return this.tree.store.animateDuration
       }
-      return 0;
+      return 0
     },
     // 是否显示展开按钮
     showNodeBtn() {
       if (this.isLeftChildNode) {
         return (
-          (this.tree.store.direction === "horizontal" &&
+          (this.tree.store.direction === 'horizontal' &&
             this.showCollapsable &&
             this.leftChildNodes.length > 0) ||
           this.level === 1
-        );
+        )
       }
       return (
         this.showCollapsable &&
         this.node.childNodes &&
         this.node.childNodes.length > 0
-      );
+      )
     },
     showNodeLeftBtn() {
       return (
-        this.tree.store.direction === "horizontal" &&
+        this.tree.store.direction === 'horizontal' &&
         this.showCollapsable &&
         this.leftChildNodes.length > 0
-      );
+      )
     },
     // 节点的宽度
     computeLabelStyle() {
-      let { labelWidth = "auto", labelHeight = "auto" } = this;
-      if (typeof labelWidth === "number") {
-        labelWidth = `${labelWidth}px`;
+      let { labelWidth = 'auto', labelHeight = 'auto' } = this
+      if (typeof labelWidth === 'number') {
+        labelWidth = `${labelWidth}px`
       }
-      if (typeof labelHeight === "number") {
-        labelHeight = `${labelHeight}px`;
+      if (typeof labelHeight === 'number') {
+        labelHeight = `${labelHeight}px`
       }
       return {
         width: labelWidth,
-        height: labelHeight
-      };
+        height: labelHeight,
+      }
     },
     computeLabelClass() {
-      let clsArr = [];
-      const store = this.tree.store;
+      let clsArr = []
+      const store = this.tree.store
       if (store.labelClassName) {
-        if (typeof store.labelClassName === "function") {
-          clsArr.push(store.labelClassName(this.node));
+        if (typeof store.labelClassName === 'function') {
+          clsArr.push(store.labelClassName(this.node))
         } else {
-          clsArr.push(store.labelClassName);
+          clsArr.push(store.labelClassName)
         }
       }
       if (store.currentLableClassName && this.node.isCurrent) {
-        if (typeof store.currentLableClassName === "function") {
-          clsArr.push(store.currentLableClassName(this.node));
+        if (typeof store.currentLableClassName === 'function') {
+          clsArr.push(store.currentLableClassName(this.node))
         } else {
-          clsArr.push(store.currentLableClassName);
+          clsArr.push(store.currentLableClassName)
         }
       }
       if (this.node.isCurrent) {
-        clsArr.push("is-current");
+        clsArr.push('is-current')
       }
-      return clsArr;
+      return clsArr
     },
     computNodeStyle() {
       return {
-        display: this.node.expanded ? "" : "none"
-      };
+        display: this.node.expanded ? '' : 'none',
+      }
     },
     computLeftNodeStyle() {
       return {
-        display: this.node.leftExpanded ? "" : "none"
-      };
+        display: this.node.leftExpanded ? '' : 'none',
+      }
     },
     // 是否显示左子数
     showLeftChildNode() {
       return (
         this.tree.onlyBothTree &&
-        this.tree.store.direction === "horizontal" &&
+        this.tree.store.direction === 'horizontal' &&
         this.leftChildNodes &&
         this.leftChildNodes.length > 0
-      );
-    }
+      )
+    },
   },
   watch: {
-    "node.expanded"(val) {
+    'node.expanded'(val) {
       // this.$nextTick(() => this.expanded = val);
     },
-    "node.leftExpanded"(val) {
+    'node.leftExpanded'(val) {
       // this.$nextTick(() => this.expanded = val);
-    }
+    },
   },
   data() {
     return {
       // node 的展开状态
       expanded: false,
-      tree: null
-    };
+      tree: null,
+    }
   },
   created() {
-    const parent = this.$parent;
+    const parent = this.$parent
     if (parent.isTree) {
-      this.tree = parent;
+      this.tree = parent
     } else {
-      this.tree = parent.tree;
+      this.tree = parent.tree
     }
 
-    const tree = this.tree;
+    const tree = this.tree
     if (!tree) {
-      console.warn("Can not find node's tree.");
+      console.warn("Can not find node's tree.")
     }
   },
   methods: {
     getNodeKey(node) {
-      return getNodeKey(this.nodeKey, node.data);
+      return getNodeKey(this.nodeKey, node.data)
     },
     handleNodeClick() {
-      const store = this.tree.store;
-      store.setCurrentNode(this.node);
-      this.tree.$emit("node-click", this.node.data, this.node, this);
+      const store = this.tree.store
+      store.setCurrentNode(this.node)
+      this.tree.$emit('node-click', this.node.data, this.node, this)
     },
     handleBtnClick(isLeft) {
-      isLeft = isLeft === "left";
-      const store = this.tree.store;
+      isLeft = isLeft === 'left'
+      const store = this.tree.store
       // 表示是OKR飞书模式
       if (store.onlyBothTree) {
         if (isLeft) {
           if (this.node.leftExpanded) {
-            this.node.leftExpanded = false;
-            this.tree.$emit("node-collapse", this.node.data, this.node, this);
+            this.node.leftExpanded = false
+            this.tree.$emit('node-collapse', this.node.data, this.node, this)
           } else {
-            this.node.leftExpanded = true;
-            this.tree.$emit("node-expand", this.node.data, this.node, this);
+            this.node.leftExpanded = true
+            this.tree.$emit('node-expand', this.node.data, this.node, this)
           }
-          return;
+          return
         }
       }
       if (this.node.expanded) {
-        this.node.collapse();
-        this.tree.$emit("node-collapse", this.node.data, this.node, this);
+        this.node.collapse()
+        this.tree.$emit('node-collapse', this.node.data, this.node, this)
       } else {
-        this.node.expand();
-        this.tree.$emit("node-expand", this.node.data, this.node, this);
+        this.node.expand()
+        this.tree.$emit('node-expand', this.node.data, this.node, this)
       }
     },
     handleContextMenu(event) {
       if (
-        this.tree._events["node-contextmenu"] &&
-        this.tree._events["node-contextmenu"].length > 0
+        this.tree._events['node-contextmenu'] &&
+        this.tree._events['node-contextmenu'].length > 0
       ) {
-        event.stopPropagation();
-        event.preventDefault();
+        event.stopPropagation()
+        event.preventDefault()
       }
       this.tree.$emit(
-        "node-contextmenu",
+        'node-contextmenu',
         event,
         this.node.data,
         this.node,
         this
-      );
-    }
-  }
-};
+      )
+    },
+  },
+}
 </script>
