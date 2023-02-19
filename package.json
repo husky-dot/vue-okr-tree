@@ -1,6 +1,6 @@
 {
   "name": "vue-okr-tree",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "main": "dist/vue-okr-tree.umd.min.js",
   "scripts": {
     "dev": "vue-cli-service serve --open",
